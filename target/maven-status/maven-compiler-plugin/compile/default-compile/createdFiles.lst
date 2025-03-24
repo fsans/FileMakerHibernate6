@@ -1,0 +1,3 @@
+org/hibernate/community/dialect/identity/FileMakerIdentityColumnSupport.class
+org/hibernate/community/dialect/FileMakerDialect.class
+org/hibernate/community/dialect/pagination/FileMakerLimitHandler.class
