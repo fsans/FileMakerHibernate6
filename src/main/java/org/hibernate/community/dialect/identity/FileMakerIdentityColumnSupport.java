@@ -1,8 +1,6 @@
 package org.hibernate.community.dialect.identity;
 
-import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.identity.IdentityColumnSupportImpl;
-import org.hibernate.id.insert.GetGeneratedKeysDelegate;
 
 public class FileMakerIdentityColumnSupport extends IdentityColumnSupportImpl {
  

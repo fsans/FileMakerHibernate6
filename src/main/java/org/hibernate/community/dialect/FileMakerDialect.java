@@ -1,20 +1,13 @@
 package org.hibernate.community.dialect;
 
-import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Types;
 
 import org.hibernate.dialect.DatabaseVersion;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.pagination.LimitHandler;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
-import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.exception.spi.SQLExceptionConversionDelegate;
-import org.hibernate.resource.jdbc.spi.StatementInspector;
 import org.hibernate.sql.ast.SqlAstTranslatorFactory;
 import org.hibernate.sql.ast.spi.StandardSqlAstTranslatorFactory;
-import org.hibernate.sql.exec.spi.JdbcSelectExecutor;
 import org.hibernate.type.descriptor.jdbc.JdbcType;
 import org.hibernate.type.descriptor.jdbc.spi.JdbcTypeRegistry;
 import org.hibernate.community.dialect.identity.FileMakerIdentityColumnSupport;
