@@ -1,4 +1,7 @@
-# Compiled class file
+git rm -r --cached target
+rm -rf target
+git add .gitignore
+git commit -m "Updated .gitignore and removed tracked target directory"# Compiled class file
 *.class
 
 # Log file
