@@ -12,8 +12,18 @@ import org.hibernate.type.spi.TypeConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 
-@DisplayName("FileMaker Dialect Type Mapping Tests")
+@Epic("FileMaker Hibernate Integration")
+@Feature("Data Type Mapping")
+@Owner("FileMaker Team")
+@DisplayName("FileMaker Type Mapping Tests")
 public class TypeMappingTest {
     
     private FileMakerDialect dialect;
@@ -26,7 +36,10 @@ public class TypeMappingTest {
     }
     
     @Test
-    @DisplayName("Test numeric type mappings")
+    @Story("Numeric Type Mapping")
+    @Description("Verify that numeric types are correctly mapped between FileMaker and Java")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Test Numeric Type Mappings")
     void testNumericTypeMappings() {
         assertEquals(
             Types.NUMERIC,
@@ -46,7 +59,10 @@ public class TypeMappingTest {
     }
     
     @Test
-    @DisplayName("Test string type mappings")
+    @Story("String Type Mapping")
+    @Description("Verify that string types are correctly mapped between FileMaker and Java")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Test String Type Mappings")
     void testStringTypeMappings() {
         assertEquals(
             Types.VARCHAR,
@@ -61,22 +77,10 @@ public class TypeMappingTest {
     }
     
     @Test
-    @DisplayName("Test binary type mappings")
-    void testBinaryTypeMappings() {
-        assertEquals(
-            Types.BINARY,
-            dialect.resolveSqlTypeDescriptor("BLOB", Types.BLOB, 0, 0, jdbcTypeRegistry)
-                .getJdbcTypeCode()
-        );
-        assertEquals(
-            Types.BINARY,
-            dialect.resolveSqlTypeDescriptor("VARBINARY", Types.VARBINARY, 255, 0, jdbcTypeRegistry)
-                .getJdbcTypeCode()
-        );
-    }
-    
-    @Test
-    @DisplayName("Test date/time type mappings")
+    @Story("Date/Time Type Mapping")
+    @Description("Verify that date and time types are correctly mapped between FileMaker and Java")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Test Date/Time Type Mappings")
     void testDateTimeTypeMappings() {
         assertEquals(
             Types.DATE,
@@ -96,7 +100,28 @@ public class TypeMappingTest {
     }
     
     @Test
-    @DisplayName("Test default type mapping")
+    @Story("Binary Type Mapping")
+    @Description("Verify that binary types are correctly mapped between FileMaker and Java")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Test Binary Type Mappings")
+    void testBinaryTypeMappings() {
+        assertEquals(
+            Types.BINARY,
+            dialect.resolveSqlTypeDescriptor("BLOB", Types.BLOB, 0, 0, jdbcTypeRegistry)
+                .getJdbcTypeCode()
+        );
+        assertEquals(
+            Types.BINARY,
+            dialect.resolveSqlTypeDescriptor("VARBINARY", Types.VARBINARY, 255, 0, jdbcTypeRegistry)
+                .getJdbcTypeCode()
+        );
+    }
+    
+    @Test
+    @Story("Default Type Mapping")
+    @Description("Verify that default type mapping is correctly handled")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Test Default Type Mapping")
     void testDefaultTypeMapping() {
         assertEquals(
             Types.VARCHAR,
@@ -106,14 +131,20 @@ public class TypeMappingTest {
     }
     
     @Test
-    @DisplayName("Test limit handler")
+    @Story("Limit Handler")
+    @Description("Verify that limit handler is correctly configured")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Test Limit Handler")
     void testLimitHandler() {
         assertNotNull(dialect.getLimitHandler());
         assertTrue(dialect.getLimitHandler() instanceof FileMakerLimitHandler);
     }
     
     @Test
-    @DisplayName("Test identity column support")
+    @Story("Identity Column Support")
+    @Description("Verify that identity column support is correctly configured")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Test Identity Column Support")
     void testIdentityColumnSupport() {
         assertNotNull(dialect.getIdentityColumnSupport());
         assertTrue(dialect.getIdentityColumnSupport() instanceof FileMakerIdentityColumnSupport);

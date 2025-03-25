@@ -7,13 +7,11 @@ import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.*;
+import io.qameta.allure.*;
 
-/**
- * Tests for handling date/time operations in FileMaker.
- * Tests timezone support and date/time field persistence.
- */
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@DisplayName("FileMaker DateTime Operations Tests")
+@Epic("FileMaker Hibernate Integration")
+@Feature("Date/Time Operations")
+@DisplayName("FileMaker Date/Time Operations Tests")
 public class DateTimeOperationsTest {
     
     private Session session;
@@ -32,8 +30,12 @@ public class DateTimeOperationsTest {
     
     @Test
     @Order(1)
+    @Story("Timezone Handling")
+    @Description("Verify that FileMaker correctly handles date/time fields with different timezones")
+    @Severity(SeverityLevel.CRITICAL)
+    @Issue("HIBERNATE-123")
     @DisplayName("Test date/time operations with timezone")
-    @Disabled("Pending verification of timezone handling")
+    //@Disabled("Pending verification of timezone handling")
     void testDateTimeOperations() {
         Contact contact = new Contact("datetime@test.com", "datetimetest", "test123");
         
