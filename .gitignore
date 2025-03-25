@@ -39,3 +39,6 @@ drivers/
 allure-results/
 */allure-results/
 **/allure-results/
+
+# Keep scripts
+!scripts/*.sh
