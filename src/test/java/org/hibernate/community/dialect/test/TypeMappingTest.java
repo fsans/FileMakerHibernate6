@@ -13,8 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
-@DisplayName("FileMaker Dialect Tests")
-public class FileMakerDialectTest {
+@DisplayName("FileMaker Dialect Type Mapping Tests")
+public class TypeMappingTest {
     
     private FileMakerDialect dialect;
     private JdbcTypeRegistry jdbcTypeRegistry;

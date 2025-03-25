@@ -1,4 +1,6 @@
 /Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/Contact.java
-/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/FileMakerDialectIntegrationTest.java
-/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/FileMakerDialectTest.java
+/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/DateTimeOperationsTest.java
 /Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/HibernateUtil.java
+/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/IntegrationTest.java
+/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/LargeTextFieldsTest.java
+/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/src/test/java/org/hibernate/community/dialect/test/TypeMappingTest.java
