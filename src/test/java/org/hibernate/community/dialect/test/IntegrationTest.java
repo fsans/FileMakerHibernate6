@@ -27,21 +27,31 @@ import io.qameta.allure.*;
  * 9. testBatchOperations - Verifies batch operations
  */
 @Epic("FileMaker Hibernate Integration")
-@Feature("Core CRUD Operations")
+@Feature("Core CRUD Operations with FileMaker-specific features:\n" +
+         "1. Auto-generated fields (UUID, SKU)\n" +
+         "2. System columns (ROWID, ROWMODID)\n" +
+         "3. Transaction management\n" +
+         "4. Batch operations\n" +
+         "5. HQL query support")
 @Owner("FileMaker Team")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DisplayName("FileMaker Dialect Integration Tests")
+@Severity(SeverityLevel.BLOCKER)
+@Issue("HIBERNATE-002")
+@TmsLink("TC-002")
 public class IntegrationTest {
     
     private static SessionFactory sessionFactory;
     private Session session;
     private Transaction transaction;
     
+    @Step("Initialize Hibernate SessionFactory")
     @BeforeAll
     static void setupClass() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
     
+    @Step("Close Hibernate SessionFactory")
     @AfterAll
     static void tearDownClass() {
         if (sessionFactory != null) {
@@ -49,12 +59,14 @@ public class IntegrationTest {
         }
     }
     
+    @Step("Initialize Hibernate session and transaction")
     @BeforeEach
     void setUp() {
         session = sessionFactory.openSession();
         transaction = session.beginTransaction();
     }
     
+    @Step("Cleanup session and transaction")
     @AfterEach
     void tearDown() {
         if (transaction != null && transaction.isActive()) {
@@ -68,9 +80,22 @@ public class IntegrationTest {
     @Test
     @Order(0)
     @Story("Basic Entity Creation")
-    @Description("Test basic entity creation with a Contact entity")
+    @Description("Validates basic CRUD operations with a Contact entity:\n" +
+                "1. Creates contact with required fields\n" +
+                "2. Persists to FileMaker database\n" +
+                "3. Verifies ID generation\n" +
+                "4. Retrieves and validates all fields\n\n" +
+                "Expected:\n" +
+                "- Auto-generated ID should be positive\n" +
+                "- All fields should persist correctly\n" +
+                "- Session clearing should not affect persistence\n\n" +
+                "Limitations:\n" +
+                "- No auto-increment support in FileMaker\n" +
+                "- IDs managed through custom sequence")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Test Basic Entity Creation")
+    @DisplayName("Basic Entity Creation and Persistence")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testBasicEntityCreation() {
         Contact contact = new Contact("test@example.com", "jdoe", "password123");
         contact.setFirstName("John");
@@ -99,9 +124,22 @@ public class IntegrationTest {
     @Test
     @Order(1)
     @Story("Generated Fields")
-    @Description("Verify that FileMaker correctly handles auto-generated fields like UUID, SKU, and timestamps")
+    @Description("Validates FileMaker's auto-generated fields and timestamps:\n" +
+                "1. Creates contact with optional fields\n" +
+                "2. Verifies UUID and SKU generation\n" +
+                "3. Validates timestamp fields\n" +
+                "4. Tests modification tracking\n\n" +
+                "Expected:\n" +
+                "- UUID and SKU should be generated\n" +
+                "- Timestamps should update correctly\n" +
+                "- ROWMODID should increment\n\n" +
+                "Limitations:\n" +
+                "- Timestamp precision limited to seconds\n" +
+                "- No UUID/SKU format customization")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Entity Creation with Generated Fields")
+    @DisplayName("Auto-Generated Fields and Timestamps")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testCreateEntityWithGeneratedFields() {
         Contact contact = new Contact("test@example.com", "testuser", "test123");
         contact.setTitle("Mr.");
@@ -156,9 +194,22 @@ public class IntegrationTest {
     @Test
     @Order(2)
     @Story("Modification Counter")
-    @Description("Verify that FileMaker correctly handles the modification counter (ROWMODID)")
+    @Description("Validates FileMaker's ROWMODID behavior:\n" +
+                "1. Creates new contact (ROWMODID=0)\n" +
+                "2. Modifies contact fields\n" +
+                "3. Verifies ROWMODID increment\n" +
+                "4. Confirms ROWID stability\n\n" +
+                "Expected:\n" +
+                "- Initial ROWMODID should be 0\n" +
+                "- ROWMODID increments on updates\n" +
+                "- ROWID remains constant\n\n" +
+                "Limitations:\n" +
+                "- ROWMODID is not transactional\n" +
+                "- Counter may skip values")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test FileMaker Record Modification Counter (ROWMODID)")
+    @DisplayName("Record Modification Counter (ROWMODID)")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testModificationCounter() {
         // Create initial contact with required fields
         Contact contact = new Contact("test.user@example.com", "tuser", "test123");
@@ -203,9 +254,20 @@ public class IntegrationTest {
     @Test
     @Order(3)
     @Story("Autoentered Value Persistence")
-    @Description("Verify that FileMaker correctly handles autoentered values like UUID and SKU")
+    @Description("Validates FileMaker's autoentered values like UUID and SKU:\n" +
+                "1. Creates contact with required fields\n" +
+                "2. Verifies UUID and SKU generation\n" +
+                "3. Updates contact fields\n" +
+                "4. Verifies UUID and SKU persistence\n\n" +
+                "Expected:\n" +
+                "- UUID and SKU should be generated\n" +
+                "- UUID and SKU should remain unchanged after update\n\n" +
+                "Limitations:\n" +
+                "- UUID/SKU format customization not supported")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Test Autoentered value Persistence")
+    @DisplayName("Autoentered Value Persistence")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testAutoenterValuePersistence() {
         Contact contact = new Contact("test.user@example.com", "tuser", "test123");
         
@@ -234,12 +296,22 @@ public class IntegrationTest {
     }
 
     @Test
-    //@Disabled("Field validation error - required fields not set")
     @Order(4)
     @Story("ROWID Persistence")
-    @Description("Verify that FileMaker correctly handles the ROWID")
+    @Description("Validates FileMaker's ROWID behavior:\n" +
+                "1. Creates contact with required fields\n" +
+                "2. Verifies ROWID generation\n" +
+                "3. Updates contact fields\n" +
+                "4. Verifies ROWID persistence\n\n" +
+                "Expected:\n" +
+                "- ROWID should be generated\n" +
+                "- ROWID should remain unchanged after update\n\n" +
+                "Limitations:\n" +
+                "- ROWID is not transactional")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Test ROWID Persistence")
+    @DisplayName("ROWID Persistence")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testRowIdPersistence() {
         // Create initial contact
         Contact contact = new Contact("test.user@example.com", "tuser", "test123");
@@ -269,9 +341,20 @@ public class IntegrationTest {
     @Test
     @Order(5)
     @Story("Entity Update")
-    @Description("Verify that FileMaker correctly handles entity updates")
+    @Description("Validates FileMaker's entity update behavior:\n" +
+                "1. Creates contact with required fields\n" +
+                "2. Updates contact fields\n" +
+                "3. Verifies update persistence\n" +
+                "4. Verifies system columns\n\n" +
+                "Expected:\n" +
+                "- Contact fields should update correctly\n" +
+                "- System columns should update correctly\n\n" +
+                "Limitations:\n" +
+                "- No transactional support for updates")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Entity Update")
+    @DisplayName("Entity Update")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testUpdateEntity() {
         // Create a contact with all required fields
         Contact contact = new Contact("bob@example.com", "bsmith", "test123");
@@ -317,9 +400,18 @@ public class IntegrationTest {
     @Test
     @Order(6)
     @Story("Entity Deletion")
-    @Description("Verify that FileMaker correctly handles entity deletion")
+    @Description("Validates FileMaker's entity deletion behavior:\n" +
+                "1. Creates contact with required fields\n" +
+                "2. Deletes contact\n" +
+                "3. Verifies deletion\n\n" +
+                "Expected:\n" +
+                "- Contact should be deleted\n\n" +
+                "Limitations:\n" +
+                "- No transactional support for deletion")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Entity Deletion")
+    @DisplayName("Entity Deletion")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testDeleteEntity() {
         // Create a contact
         Contact contact = new Contact("alice@example.com", "abrown", "pass456");
@@ -344,9 +436,18 @@ public class IntegrationTest {
     @Test
     @Order(7)
     @Story("Advanced Queries")
-    @Description("Verify that FileMaker correctly handles advanced queries")
+    @Description("Validates FileMaker's advanced query behavior:\n" +
+                "1. Creates multiple contacts\n" +
+                "2. Executes HQL queries\n" +
+                "3. Verifies query results\n\n" +
+                "Expected:\n" +
+                "- Queries should return correct results\n\n" +
+                "Limitations:\n" +
+                "- No support for subqueries")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Test Advanced Query Features")
+    @DisplayName("Advanced Query Features")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testAdvancedQueries() {
         // Create contacts with various fields
         createTestContacts();
@@ -410,9 +511,19 @@ public class IntegrationTest {
     @Test
     @Order(8)
     @Story("Transaction Management")
-    @Description("Verify that transactions are properly managed and can be rolled back")
+    @Description("Validates FileMaker's transaction management behavior:\n" +
+                "1. Creates contact with required fields\n" +
+                "2. Updates contact fields\n" +
+                "3. Rolls back transaction\n" +
+                "4. Verifies no changes\n\n" +
+                "Expected:\n" +
+                "- No changes should be persisted\n\n" +
+                "Limitations:\n" +
+                "- No support for nested transactions")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Transaction Rollback")
+    @DisplayName("Transaction Rollback")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testTransactionRollback() {
         // Create a contact with all required fields
         Contact contact = new Contact("test@example.com", "tuser", "testpass");
@@ -457,9 +568,18 @@ public class IntegrationTest {
     @Test
     @Order(9)
     @Story("Batch Operations")
-    @Description("Verify that batch operations are properly handled")
+    @Description("Validates FileMaker's batch operation behavior:\n" +
+                "1. Creates multiple contacts\n" +
+                "2. Persists contacts in batch\n" +
+                "3. Verifies batch insert\n\n" +
+                "Expected:\n" +
+                "- All contacts should be inserted\n\n" +
+                "Limitations:\n" +
+                "- No support for batch updates or deletes")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Test Batch Operations")
+    @DisplayName("Batch Operations")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testBatchOperations() {
         // Create multiple contacts in batch
         for (int i = 1; i <= 5; i++) {

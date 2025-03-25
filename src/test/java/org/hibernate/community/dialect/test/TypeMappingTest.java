@@ -19,9 +19,11 @@ import io.qameta.allure.Story;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 
 @Epic("FileMaker Hibernate Integration")
-@Feature("Data Type Mapping")
+@Feature("Data Type Mapping - Validates FileMaker's data type mapping capabilities with the following constraints: Supported types: VARCHAR, DOUBLE, DATE, TIME, TIMESTAMP, BLOB, No Boolean data type support, No auto-generated keys")
 @Owner("FileMaker Team")
 @DisplayName("FileMaker Type Mapping Tests")
 public class TypeMappingTest {
@@ -37,9 +39,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("Numeric Type Mapping")
-    @Description("Verify that numeric types are correctly mapped between FileMaker and Java")
+    @Description("Validates numeric type mappings in FileMaker:\n" +
+                "1. NUMBER -> Types.NUMERIC\n" +
+                "2. DECIMAL -> Types.DECIMAL\n" +
+                "3. Precision and scale handling\n\n" +
+                "Expected: All numeric types should map to their correct JDBC equivalents")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Test Numeric Type Mappings")
+    @DisplayName("Numeric Data Type Resolution")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testNumericTypeMappings() {
         assertEquals(
             Types.NUMERIC,
@@ -60,9 +68,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("String Type Mapping")
-    @Description("Verify that string types are correctly mapped between FileMaker and Java")
+    @Description("Validates string type mappings in FileMaker:\n" +
+                "1. VARCHAR -> Types.VARCHAR (up to 255 chars)\n" +
+                "2. LONGVARCHAR -> Types.VARCHAR (up to 4000 chars)\n" +
+                "3. Proper length handling\n\n" +
+                "Expected: All string types should map to VARCHAR in FileMaker")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Test String Type Mappings")
+    @DisplayName("String Data Type Resolution")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testStringTypeMappings() {
         assertEquals(
             Types.VARCHAR,
@@ -78,9 +92,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("Date/Time Type Mapping")
-    @Description("Verify that date and time types are correctly mapped between FileMaker and Java")
+    @Description("Validates date/time type mappings in FileMaker:\n" +
+                "1. DATE -> Types.DATE\n" +
+                "2. TIME -> Types.TIME\n" +
+                "3. TIMESTAMP -> Types.TIMESTAMP\n\n" +
+                "Expected: All temporal types should preserve precision and timezone information")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Test Date/Time Type Mappings")
+    @DisplayName("Date/Time Data Type Resolution")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testDateTimeTypeMappings() {
         assertEquals(
             Types.DATE,
@@ -101,9 +121,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("Binary Type Mapping")
-    @Description("Verify that binary types are correctly mapped between FileMaker and Java")
+    @Description("Validates binary type mappings in FileMaker:\n" +
+                "1. BLOB -> Types.BINARY\n" +
+                "2. VARBINARY -> Types.BINARY\n" +
+                "3. Size limitations and handling\n\n" +
+                "Expected: All binary types should map to BINARY in FileMaker")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Binary Type Mappings")
+    @DisplayName("Binary Data Type Resolution")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testBinaryTypeMappings() {
         assertEquals(
             Types.BINARY,
@@ -119,9 +145,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("Default Type Mapping")
-    @Description("Verify that default type mapping is correctly handled")
+    @Description("Validates default type mapping behavior:\n" +
+                "1. Unknown types -> Types.VARCHAR\n" +
+                "2. Custom types handling\n" +
+                "3. Edge cases\n\n" +
+                "Expected: All unknown types should safely map to VARCHAR as fallback")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Default Type Mapping")
+    @DisplayName("Default Type Resolution")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testDefaultTypeMapping() {
         assertEquals(
             Types.VARCHAR,
@@ -132,9 +164,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("Limit Handler")
-    @Description("Verify that limit handler is correctly configured")
+    @Description("Validates FileMaker's SQL LIMIT clause handling:\n" +
+                "1. Proper LimitHandler implementation\n" +
+                "2. OFFSET/FETCH support\n" +
+                "3. Pagination capabilities\n\n" +
+                "Expected: Should use FileMakerLimitHandler for pagination")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Limit Handler")
+    @DisplayName("Limit Handler Configuration")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testLimitHandler() {
         assertNotNull(dialect.getLimitHandler());
         assertTrue(dialect.getLimitHandler() instanceof FileMakerLimitHandler);
@@ -142,9 +180,15 @@ public class TypeMappingTest {
     
     @Test
     @Story("Identity Column Support")
-    @Description("Verify that identity column support is correctly configured")
+    @Description("Validates FileMaker's identity column support:\n" +
+                "1. Proper IdentityColumnSupport implementation\n" +
+                "2. No auto-generated keys support\n" +
+                "3. Manual ID generation requirements\n\n" +
+                "Expected: Should use FileMakerIdentityColumnSupport with manual ID generation")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Identity Column Support")
+    @DisplayName("Identity Column Configuration")
+    @Issue("HIBERNATE-002")
+    @TmsLink("TC-002")
     void testIdentityColumnSupport() {
         assertNotNull(dialect.getIdentityColumnSupport());
         assertTrue(dialect.getIdentityColumnSupport() instanceof FileMakerIdentityColumnSupport);

@@ -10,9 +10,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,9 +23,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Tests for SQL keyword recognition in the FileMaker dialect.
  */
 @Epic("FileMaker Hibernate Dialect")
-@Feature("SQL Keyword Recognition")
+@Feature("SQL Keyword Recognition - FileMaker-specific, Standard SQL, Data Type, and Function Keywords")
 @Owner("hibernate-team")
+@DisplayName("FileMaker Reserved Words Test")
 @Severity(SeverityLevel.CRITICAL)
+@Issue("HIBERNATE-003")
+@TmsLink("TC-003")
 public class ReservedWordsTest {
 
     private FileMakerDialect dialect;
@@ -33,7 +39,14 @@ public class ReservedWordsTest {
     }
 
     @DisplayName("Verify individual SQL keyword recognition")
-    @Description("Validates that specific SQL keywords are recognized by the FileMaker dialect")
+    @Description("Validates keyword recognition for:\n" +
+                "1. FileMaker system columns (ROWID, MODID)\n" +
+                "2. FileMaker functions (GETAS, PUTAS)\n" +
+                "3. Standard SQL keywords\n" +
+                "4. Data type keywords\n" +
+                "5. SQL function names\n\n" +
+                "Expected: All keywords should be properly recognized and escaped in SQL statements")
+    @Story("Keyword Recognition")
     @Severity(SeverityLevel.BLOCKER)
     @ParameterizedTest(name = "Test keyword: {0}")
     @ValueSource(strings = {

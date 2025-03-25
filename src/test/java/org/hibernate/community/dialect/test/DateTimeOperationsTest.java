@@ -10,17 +10,28 @@ import org.junit.jupiter.api.*;
 import io.qameta.allure.*;
 
 @Epic("FileMaker Hibernate Integration")
-@Feature("Date/Time Operations")
+@Feature("Date/Time Operations - TIMESTAMP, DATE, and TIME field handling with constraints:\n" +
+         "1. Supported types: DATE, TIME, TIMESTAMP\n" +
+         "2. Timezone awareness\n" +
+         "3. Millisecond precision\n" +
+         "4. Date/time conversion between Java and FileMaker")
+@Owner("FileMaker Team")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DisplayName("FileMaker Date/Time Operations Tests")
+@Severity(SeverityLevel.CRITICAL)
+@Issue("HIBERNATE-004")
+@TmsLink("TC-004")
 public class DateTimeOperationsTest {
     
     private Session session;
     
+    @Step("Initialize Hibernate session")
     @BeforeEach
     void setUp() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
+    @Step("Cleanup Hibernate session")
     @AfterEach
     void tearDown() {
         if (session != null) {
@@ -31,11 +42,23 @@ public class DateTimeOperationsTest {
     @Test
     @Order(1)
     @Story("Timezone Handling")
-    @Description("Verify that FileMaker correctly handles date/time fields with different timezones")
+    @Description("Validates FileMaker's date/time handling across timezones:\n" +
+                "1. Stores current date/time in system timezone\n" +
+                "2. Retrieves and verifies stored date/time\n" +
+                "3. Tests timezone conversions (Tokyo vs London)\n" +
+                "4. Verifies millisecond precision\n\n" +
+                "Expected:\n" +
+                "- Date/time values should preserve timezone information\n" +
+                "- Correct handling of DST transitions\n" +
+                "- Proper millisecond truncation\n\n" +
+                "Limitations:\n" +
+                "- FileMaker stores times in local server timezone\n" +
+                "- Millisecond precision may be lost\n" +
+                "- No support for calendar variations")
     @Severity(SeverityLevel.CRITICAL)
-    @Issue("HIBERNATE-123")
-    @DisplayName("Test date/time operations with timezone")
-    //@Disabled("Pending verification of timezone handling")
+    @DisplayName("Date/Time Operations with Timezone Support")
+    @Issue("HIBERNATE-004")
+    @TmsLink("TC-004")
     void testDateTimeOperations() {
         Contact contact = new Contact("datetime@test.com", "datetimetest", "test123");
         

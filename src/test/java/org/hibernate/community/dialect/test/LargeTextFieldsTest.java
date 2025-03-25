@@ -12,10 +12,13 @@ import io.qameta.allure.*;
  * Focuses on VARCHAR fields up to 100KB.
  */
 @Epic("FileMaker Hibernate Integration")
-@Feature("Large Text Field Handling")
+@Feature("Large Text Field Handling - Max 100KB VARCHAR fields with UTF-8 encoding")
 @Owner("FileMaker Team")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DisplayName("FileMaker Large Text Fields Tests")
+@Severity(SeverityLevel.CRITICAL)
+@Issue("HIBERNATE-001")
+@TmsLink("TC-001")
 public class LargeTextFieldsTest {
     
     private Session session;
@@ -34,12 +37,14 @@ public class LargeTextFieldsTest {
         LARGE_TEXT = sb.toString();
     }
     
+    @Step("Initialize Hibernate session and transaction")
     @BeforeEach
     void setUp() {
         session = HibernateUtil.getSessionFactory().openSession();
         transaction = session.beginTransaction();
     }
 
+    @Step("Cleanup session and transaction")
     @AfterEach
     void tearDown() {
         if (transaction != null && transaction.isActive()) {
@@ -53,9 +58,20 @@ public class LargeTextFieldsTest {
     @Test
     @Order(1)
     @Story("Large Text Storage")
-    @Description("Verify that FileMaker correctly handles large text fields up to 100KB")
+    @Description("Validates FileMaker's ability to store and retrieve large text fields:\n" +
+                "1. Creates a contact with 80KB of text data\n" +
+                "2. Persists the contact to FileMaker\n" +
+                "3. Retrieves the contact and verifies data integrity\n" +
+                "4. Cleans up test data\n\n" +
+                "Expected: Text data should be stored and retrieved without truncation or corruption\n" +
+                "Limitations:\n" +
+                "- Maximum field size: 100KB\n" +
+                "- Field type: VARCHAR\n" +
+                "- Encoding: UTF-8")
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Test Large Text Fields")
+    @DisplayName("Large Text Field Storage and Retrieval")
+    @Issue("HIBERNATE-001")
+    @TmsLink("TC-001")
     void testLargeTextFields() {
         Contact contact = new Contact("test@example.com", "tuser", "test123");
         contact.setNotes(LARGE_TEXT);

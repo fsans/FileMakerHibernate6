@@ -1,17 +1,17 @@
 package org.hibernate.community.dialect;
 
-import java.sql.Types;
-
-import org.hibernate.dialect.DatabaseVersion;
 import org.hibernate.dialect.Dialect;
+import org.hibernate.dialect.DatabaseVersion;
+import org.hibernate.dialect.identity.IdentityColumnSupport;
 import org.hibernate.dialect.pagination.LimitHandler;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
-import org.hibernate.sql.ast.SqlAstTranslatorFactory;
-import org.hibernate.sql.ast.spi.StandardSqlAstTranslatorFactory;
 import org.hibernate.type.descriptor.jdbc.JdbcType;
 import org.hibernate.type.descriptor.jdbc.spi.JdbcTypeRegistry;
 import org.hibernate.community.dialect.identity.FileMakerIdentityColumnSupport;
 import org.hibernate.community.dialect.pagination.FileMakerLimitHandler;
+import org.hibernate.sql.ast.SqlAstTranslatorFactory;
+
+import java.sql.Types;
 
 /**
  * An SQL dialect for FileMaker.
@@ -102,7 +102,7 @@ public class FileMakerDialect extends Dialect {
     }
 
      @Override
-    public FileMakerIdentityColumnSupport getIdentityColumnSupport() {
+    public IdentityColumnSupport getIdentityColumnSupport() {
         return FileMakerIdentityColumnSupport.INSTANCE;
     }
 
@@ -167,8 +167,7 @@ public class FileMakerDialect extends Dialect {
     // New method required for Hibernate 6
     @Override
     public SqlAstTranslatorFactory getSqlAstTranslatorFactory() {
-        //return super.getSqlAstTranslatorFactory();
-         return new StandardSqlAstTranslatorFactory();
+        return super.getSqlAstTranslatorFactory();
     }
 
     // New method required for Hibernate 6
