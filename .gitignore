@@ -23,8 +23,19 @@
 hs_err_pid*
 replay_pid*
 
-*/target
+# Build directories
+target/
+*/target/
+**/target/
 
-*/drivers
-./allure
-./allure/*
+# FileMaker JDBC drivers
+*/drivers/
+drivers/
+
+# Allure reports
+.allure/
+*/.allure/
+**/.allure/
+allure-results/
+*/allure-results/
+**/allure-results/
