@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.IntegrationTest" time="2.653" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.IntegrationTest" time="2.689" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="http.proxyHost" value="127.0.0.1"/>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/test-classes:/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/classes:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Volumes/DATA00/HOME/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Volumes/DATA00/HOME/.m2/repository/net/bytebuddy/byte-buddy/1.14.15/byte-buddy-1.14.15.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/filemaker/jdbc/Driver/fmjdbc/21.0.1/fmjdbc-21.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:"/>
+    <property name="java.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/test-classes:/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/classes:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Volumes/DATA00/HOME/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Volumes/DATA00/HOME/.m2/repository/net/bytebuddy/byte-buddy/1.14.15/byte-buddy-1.14.15.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/filemaker/jdbc/Driver/fmjdbc/21.0.1/fmjdbc-21.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:"/>
     <property name="https.proxyPort" value="8888"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ES"/>
     <property name="sun.boot.library.path" value="/Volumes/DATA00/HOME/.sdkman/candidates/java/21.0.5-tem/lib"/>
-    <property name="sun.java.command" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire/surefirebooter-20250325160703280_3.jar /Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire 2025-03-25T16-07-03_093-jvmRun1 surefire-20250325160703280_1tmp surefire_0-20250325160703280_2tmp"/>
+    <property name="sun.java.command" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire/surefirebooter-20250325171254642_3.jar /Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire 2025-03-25T17-12-54_475-jvmRun1 surefire-20250325171254642_1tmp surefire_0-20250325171254642_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/test-classes:/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/classes:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Volumes/DATA00/HOME/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Volumes/DATA00/HOME/.m2/repository/net/bytebuddy/byte-buddy/1.14.15/byte-buddy-1.14.15.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/filemaker/jdbc/Driver/fmjdbc/21.0.1/fmjdbc-21.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:"/>
+    <property name="surefire.test.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/test-classes:/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/classes:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Volumes/DATA00/HOME/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Volumes/DATA00/HOME/.m2/repository/net/bytebuddy/byte-buddy/1.14.15/byte-buddy-1.14.15.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/filemaker/jdbc/Driver/fmjdbc/21.0.1/fmjdbc-21.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:"/>
     <property name="allure.results.directory" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/allure-results"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Volumes/DATA00/HOME"/>
@@ -33,7 +33,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire/surefirebooter-20250325160703280_3.jar"/>
+    <property name="surefire.real.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire/surefirebooter-20250325171254642_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+11-LTS"/>
     <property name="user.name" value="fsans"/>
@@ -61,7 +61,7 @@
     <property name="java.class.version" value="65.0"/>
     <property name="http.proxyPort" value="8888"/>
   </properties>
-  <testcase name="testBasicEntityCreation" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.085">
+  <testcase name="testBasicEntityCreation" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.083">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -100,25 +100,25 @@ Hibernate:
         contact c1_0 
     where
         c1_0.id=?
-Reloaded contact - ID: 1210
+Reloaded contact - ID: 1336
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:09 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:01 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    1530717 nanoseconds spent acquiring 2 JDBC connections;
-    1223638 nanoseconds spent releasing 2 JDBC connections;
-    8980713 nanoseconds spent preparing 3 JDBC statements;
-    43414002 nanoseconds spent executing 3 JDBC statements;
+    1306479 nanoseconds spent acquiring 2 JDBC connections;
+    1222092 nanoseconds spent releasing 2 JDBC connections;
+    5340454 nanoseconds spent preparing 3 JDBC statements;
+    54927993 nanoseconds spent executing 3 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    109263 nanoseconds spent executing 1 flushes (flushing a total of 1 entities and 0 collections);
+    81914 nanoseconds spent executing 1 flushes (flushing a total of 1 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testCreateEntityWithGeneratedFields" classname="org.hibernate.community.dialect.test.IntegrationTest" time="1.117">
+  <testcase name="testCreateEntityWithGeneratedFields" classname="org.hibernate.community.dialect.test.IntegrationTest" time="1.105">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -203,17 +203,17 @@ Hibernate:
     where
         c1_0.id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:10 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:02 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    4046621 nanoseconds spent acquiring 4 JDBC connections;
-    7829034 nanoseconds spent releasing 4 JDBC connections;
-    16673173 nanoseconds spent preparing 5 JDBC statements;
-    47650251 nanoseconds spent executing 5 JDBC statements;
+    3672820 nanoseconds spent acquiring 4 JDBC connections;
+    4157893 nanoseconds spent releasing 4 JDBC connections;
+    11280671 nanoseconds spent preparing 5 JDBC statements;
+    48496969 nanoseconds spent executing 5 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    14212805 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    17015862 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
@@ -304,23 +304,23 @@ Hibernate:
     where
         c1_0.id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:10 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:02 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    2675811 nanoseconds spent acquiring 4 JDBC connections;
-    2585540 nanoseconds spent releasing 4 JDBC connections;
-    13120628 nanoseconds spent preparing 5 JDBC statements;
-    51470785 nanoseconds spent executing 5 JDBC statements;
+    2575775 nanoseconds spent acquiring 4 JDBC connections;
+    2601529 nanoseconds spent releasing 4 JDBC connections;
+    9442464 nanoseconds spent preparing 5 JDBC statements;
+    58958051 nanoseconds spent executing 5 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    4008006 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    3696459 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testAutoenterValuePersistence" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.077">
+  <testcase name="testAutoenterValuePersistence" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.13">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -405,23 +405,23 @@ Hibernate:
     where
         c1_0.id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:10 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:02 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    2663048 nanoseconds spent acquiring 4 JDBC connections;
-    2373959 nanoseconds spent releasing 4 JDBC connections;
-    8403540 nanoseconds spent preparing 5 JDBC statements;
-    41084352 nanoseconds spent executing 5 JDBC statements;
+    2805061 nanoseconds spent acquiring 4 JDBC connections;
+    16988298 nanoseconds spent releasing 4 JDBC connections;
+    7981895 nanoseconds spent preparing 5 JDBC statements;
+    64841254 nanoseconds spent executing 5 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    4911492 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    4727871 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testRowIdPersistence" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.066">
+  <testcase name="testRowIdPersistence" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.072">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -506,23 +506,23 @@ Hibernate:
     where
         c1_0.id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:10 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:02 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    2765717 nanoseconds spent acquiring 4 JDBC connections;
-    2491559 nanoseconds spent releasing 4 JDBC connections;
-    7189544 nanoseconds spent preparing 5 JDBC statements;
-    33425641 nanoseconds spent executing 5 JDBC statements;
+    2541102 nanoseconds spent acquiring 4 JDBC connections;
+    2407737 nanoseconds spent releasing 4 JDBC connections;
+    7247331 nanoseconds spent preparing 5 JDBC statements;
+    42282513 nanoseconds spent executing 5 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    3321930 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    3253874 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testUpdateEntity" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.128">
+  <testcase name="testUpdateEntity" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.06">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -607,23 +607,23 @@ Hibernate:
     where
         c1_0.id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:10 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:02 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    2704221 nanoseconds spent acquiring 4 JDBC connections;
-    2285936 nanoseconds spent releasing 4 JDBC connections;
-    62027231 nanoseconds spent preparing 5 JDBC statements;
-    42330502 nanoseconds spent executing 5 JDBC statements;
+    2394697 nanoseconds spent acquiring 4 JDBC connections;
+    2290943 nanoseconds spent releasing 4 JDBC connections;
+    6205683 nanoseconds spent preparing 5 JDBC statements;
+    32172209 nanoseconds spent executing 5 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    3494919 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    2784628 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testDeleteEntity" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.055">
+  <testcase name="testDeleteEntity" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.048">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -669,23 +669,23 @@ Hibernate:
     where
         c1_0.id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:10 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:02 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    1782552 nanoseconds spent acquiring 3 JDBC connections;
-    1832040 nanoseconds spent releasing 3 JDBC connections;
-    4645438 nanoseconds spent preparing 4 JDBC statements;
-    31335094 nanoseconds spent executing 4 JDBC statements;
+    1876588 nanoseconds spent acquiring 3 JDBC connections;
+    1588751 nanoseconds spent releasing 3 JDBC connections;
+    3900204 nanoseconds spent preparing 4 JDBC statements;
+    26017787 nanoseconds spent executing 4 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    2522595 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    2306266 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testAdvancedQueries" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.691">
+  <testcase name="testAdvancedQueries" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.737">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -835,23 +835,23 @@ Hibernate:
     where
         id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:11 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:03 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    3292221 nanoseconds spent acquiring 5 JDBC connections;
-    2832042 nanoseconds spent releasing 5 JDBC connections;
-    20460003 nanoseconds spent preparing 12 JDBC statements;
-    86663655 nanoseconds spent executing 12 JDBC statements;
+    3237337 nanoseconds spent acquiring 5 JDBC connections;
+    3089065 nanoseconds spent releasing 5 JDBC connections;
+    19683555 nanoseconds spent preparing 12 JDBC statements;
+    75996273 nanoseconds spent executing 12 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    17951635 nanoseconds spent executing 2 flushes (flushing a total of 7 entities and 0 collections);
+    12507836 nanoseconds spent executing 2 flushes (flushing a total of 7 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testTransactionRollback" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.088">
+  <testcase name="testTransactionRollback" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.093">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -923,23 +923,23 @@ Hibernate:
     where
         id=?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:11 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:03 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    2760397 nanoseconds spent acquiring 5 JDBC connections;
-    2642600 nanoseconds spent releasing 5 JDBC connections;
-    8661389 nanoseconds spent preparing 5 JDBC statements;
-    51621787 nanoseconds spent executing 5 JDBC statements;
+    2608670 nanoseconds spent acquiring 5 JDBC connections;
+    2597714 nanoseconds spent releasing 5 JDBC connections;
+    7366168 nanoseconds spent preparing 5 JDBC statements;
+    53947081 nanoseconds spent executing 5 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    2578135 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    2639080 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testBatchOperations" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.214">
+  <testcase name="testBatchOperations" classname="org.hibernate.community.dialect.test.IntegrationTest" time="0.235">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -1023,19 +1023,19 @@ Hibernate:
     where
         email like ?
 ]]></system-out>
-    <system-err><![CDATA[Mar 25, 2025 4:07:11 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Mar 25, 2025 5:13:04 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    1795591 nanoseconds spent acquiring 3 JDBC connections;
-    1603162 nanoseconds spent releasing 3 JDBC connections;
-    9673707 nanoseconds spent preparing 12 JDBC statements;
-    112401302 nanoseconds spent executing 12 JDBC statements;
+    1869374 nanoseconds spent acquiring 3 JDBC connections;
+    1609410 nanoseconds spent releasing 3 JDBC connections;
+    10532121 nanoseconds spent preparing 12 JDBC statements;
+    117598006 nanoseconds spent executing 12 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    262306 nanoseconds spent executing 2 flushes (flushing a total of 5 entities and 0 collections);
+    266546 nanoseconds spent executing 2 flushes (flushing a total of 5 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
-    285924 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+    238452 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>

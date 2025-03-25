@@ -19,7 +19,6 @@ import org.hibernate.community.dialect.pagination.FileMakerLimitHandler;
  * @author Francesc Sans
  */
 
-
 public class FileMakerDialect extends Dialect {
 
     private static final DatabaseVersion DEFAULT_VERSION = DatabaseVersion.make( 21, 0 );
@@ -30,6 +29,7 @@ public class FileMakerDialect extends Dialect {
 
     public FileMakerDialect(DatabaseVersion version) {
         super(version);
+        registerDefaultKeywords();
     }
 
     public FileMakerDialect(DialectResolutionInfo info) {
@@ -190,5 +190,69 @@ public class FileMakerDialect extends Dialect {
 		throw new UnsupportedOperationException( "No drop schema syntax supported by " + getClass().getName() );
 	}
 
+        /* 
+     * Reserved FileMaker specific keywords
+     * According to the ANSI SQL:2003 standard, SQL keywords are case-insensitive.
+     * However, it's a best practice to use uppercase when registering keywords to
+     * maintain consistency 
+     * 
+     */
+
+     @Override
+     protected void registerDefaultKeywords() {
+ 
+         // default ansi keywords as in org.hibernate.engine.jdbc.env.spi.AnsiSqlKeywords
+         super.registerDefaultKeywords();
+ 
+         // added for FileMaker - all keywords must be lowercase as Dialect.java checks tokens in lowercase
+         String[] keywords = {
+                 // FileMaker-specific keywords
+                 "rowid", "modid", "getas", "putas", "recid",
+                
+                 // Common SQL keywords
+                 "select", "insert", "update", "delete", "from", "where",
+                
+                 // Data type keywords
+                 "varchar", "integer", "timestamp", "blob",
+                
+                 // Function keywords
+                 "count", "max", "min", "avg", "sum",
+                
+                 // FileMaker date/time functions
+                 "curdate", "curtime", "today", "now",
+                
+                 // FileMaker type conversion
+                 "strval", "numval", "dateval", "timestampval",
+
+                 // Additional FileMaker keywords
+                 "absolute", "action", "add", "asc", "assertion", "begin", "bit", "bit_length", "boolean",
+                 "by", "cascade", "catalog", "char_length", "character_length", "chr", "close", "coalesce",
+                 "collation", "connect", "connection", "constraints", "convert", "create",
+                 "cursor", "curtimestamp", "day", "dayname", "dayofweek", "dec",
+                 "deferrable", "deferred", "desc", "descriptor", "diagnostics", "disconnect", "domain", "double",
+                 "end_exec", "every", "except", "exception", "exists", "extract", "fetch", "first", "float",
+                 "found", "get", "go", "goto", "grant", "group", "having", "hour", "identity", "immediate",
+                 "index", "indicator", "initially", "inner", "input", "insensitive", "int", "intersect",
+                 "interval", "is", "isolation", "join", "key", "language", "last", "leading", "left", "length",
+                 "level", "like", "local", "longvarbinary", "lower", "ltrim", "match", "minute",
+                 "module", "month", "monthname", "names", "national", "natural", "nchar", "next", "no", "not",
+                 "null", "nullif", "numeric", "octet_length", "of", "offset", "on", "only", "open",
+                 "option", "or", "order", "outer", "output", "overlaps", "pad", "part", "partial", "percent",
+                 "position", "precision", "prepare", "preserve", "primary", "prior", "privileges", "procedure",
+                 "public", "read", "real", "references", "relative", "restrict", "revoke", "right", "rollback",
+                 "round", "row", "rows", "rtrim", "schema", "scroll", "second", "section",
+                 "session", "session_user", "set", "size", "smallint", "some", "space", "sql", "sqlcode",
+                 "sqlerror", "sqlstate", "substring", "system_user", "table", "temporary",
+                 "then", "ties", "time", "timeval", "timezone_hour",
+                 "timezone_minute", "to", "trailing", "transaction", "translate", "translation",
+                 "trim", "true", "union", "unique", "unknown", "upper", "usage", "user", "using",
+                 "value", "values", "varying", "view", "when", "whenever", "with",
+                 "work", "write", "year", "zone"
+         };
+
+         for (String keyword : keywords) {
+             registerKeyword(keyword);
+         }
+     }
 
 }
