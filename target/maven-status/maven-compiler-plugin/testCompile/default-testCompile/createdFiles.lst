@@ -1,7 +1,0 @@
-org/hibernate/community/dialect/test/ReservedWordsTest.class
-org/hibernate/community/dialect/test/Contact.class
-org/hibernate/community/dialect/test/HibernateUtil.class
-org/hibernate/community/dialect/test/IntegrationTest.class
-org/hibernate/community/dialect/test/TypeMappingTest.class
-org/hibernate/community/dialect/test/LargeTextFieldsTest.class
-org/hibernate/community/dialect/test/DateTimeOperationsTest.class
