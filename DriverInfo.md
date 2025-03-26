@@ -13,9 +13,9 @@ com.filemaker.jdbc://host:port/database?params
 
 port is not required, defaults to 2399
 
-### Parameters
+### Connection url parameters
 
-Connection URL parametres used by fmjdbc driver
+Connection URL parameters used by fmjdbc driver
 
 |  Param  |    |  default  |  Options  |
 |----|----|----|----|
@@ -30,6 +30,18 @@ Connection URL parametres used by fmjdbc driver
 | "CertificateFailureType" | optional | "Warning" | (values None\|**Warning**\|Error) |
 | "loglevel" | optional | empty | **empty** or 0\|>=1 is INFO\|>=2 is DEBUG, the log output is fixed to /tmp/fmjdbc.log and overwriten by session |
 
+
+## set the driver log level
+
+change the log level of the driver with:
+
+```java
+setLogLevel(int param);
+// param >= 1 set to INFO
+// param >= 2 set to DEBUG
+```
+
+
 ## type ids
 
 2, 3, 4, 12, 12, -2, -2, -2, -2, 91, 92, 93
@@ -41,16 +53,6 @@ Connection URL parametres used by fmjdbc driver
 ## JDBC3 types
 
 "numeric", "decimal", "int", "varchar", "character varying", "blob", "varbinary", "longvarbinary", "binary varying", "date", "time", "timestamp"
-
-## set log level
-
-change the log level of the driver with:
-
-```java
-setLogLevel(int param);
-// param >= 1 set to INFO
-// param >= 2 set to DEBUG
-```
 
 ## Data types
 
@@ -71,12 +73,7 @@ The driver can accepts the following datatypes:
 "numeric", "decimal", "int", "varchar", "character varying", "blob", "varbinary", "longvarbinary", "binary varying", "date", "time", "timestamp"
 
 
-## ORDER BY clause
-The ORDER BY clause indicates how the records are to be sorted. If your SELECT statement doesn’t include an ORDER BY clause, the records may be returned in any order.
-The format is:
-ORDER BY {sort_expression [DESC | ASC]}, ...
-sort_expression can be the field name or the positional number of the column expression to
-use. The default is to perform an ascending (ASC) sort.
+
 
 
 ## Pagination
@@ -104,7 +101,7 @@ FETCH FIRST y ROW|ROWS ONLY
 
 
 
-The OFFSET and FETCH FIRST clauses are not supported in subqueries. OFFSET format
+The OFFSET and FETCH FIRST clauses are not supported in subqueries.
 
 ### OFFSET format
 
@@ -130,6 +127,42 @@ ROWS is the same as ROW.
 WITH TIES must be used with the ORDER BY clause.
 
 WITH TIES allows more rows to be returned than specified in the FETCH count value because peer rows, those rows that are not distinct based on the ORDER BY clause, are also returned.
+
+## ORDER BY clause
+
+The ORDER BY clause indicates how the records are to be sorted. If your SELECT statement doesn’t include an ORDER BY clause, the records may be returned in any order.
+
+The format is:
+
+```sql
+ORDER BY {sort_expression [DESC | ASC]}, ...
+```
+
+sort_expression can be the field name or the positional number of the column expression to
+use. The default is to perform an ascending (ASC) sort.
+
+### FOR UPDATE clause
+
+The FOR UPDATE clause locks records for Positioned Updates or Positioned Deletes via SQL cursors. 
+
+The format is:
+```sql
+FOR UPDATE [OF column_expressions]
+```
+
+column_expressions is a list of field names in the database table that you intend to update,
+separated by a comma. column_expressions is optional, and is ignored. 
+
+**Example**
+
+Return all records in the employee database that have a SALARY field value of more than $20,000.
+
+```sql
+SELECT * FROM emp WHERE salary > 20000
+   FOR UPDATE OF last_name, first_name, salary
+```
+
+When each record is fetched, it is locked. If the record is updated or deleted, the lock is held until you commit the change. Otherwise, the lock is released when you fetch the next record.
 
 ## FileMaker system columns
 
@@ -180,7 +213,7 @@ You can retrieve file reference information, binary data, or data of a specific 
 - To retrieve file reference information from a container field, such as the file path to a file, picture, or QuickTime movie, use the **CAST()** function with a SELECT statement.
 - If file data or JPEG binary data exists, the SELECT statement with **GetAs()** function retrieves the data in binary form; otherwise, the SELECT statement with field name returns NULL.
 
-Example
+**Example**
 Use the CAST() function with a SELECT statement to retrieve file reference information.
 
 ```sql
@@ -202,7 +235,7 @@ You can use the SELECT statement with the **GetAs()** function to retrieve the d
 
 - To retrieve an individual stream type from a container, use the **GetAs()** function with the file’s type based on how the data was inserted into the container field in FileMaker Pro.
 
-Example
+**Example**
 
 ```sql
  SELECT GetAs(Company_Brochures, DEFAULT) FROM Sales_Data
