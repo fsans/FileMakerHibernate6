@@ -70,9 +70,22 @@ The driver can accepts the following datatypes:
 
 "numeric", "decimal", "int", "varchar", "character varying", "blob", "varbinary", "longvarbinary", "binary varying", "date", "time", "timestamp"
 
+
+## ORDER BY clause
+The ORDER BY clause indicates how the records are to be sorted. If your SELECT statement doesn’t include an ORDER BY clause, the records may be returned in any order.
+The format is:
+ORDER BY {sort_expression [DESC | ASC]}, ...
+sort_expression can be the field name or the positional number of the column expression to
+use. The default is to perform an ascending (ASC) sort.
+
+
 ## Pagination
 
 Supports the standar ANSI OFFSET/FETCH clause in the following form:
+
+The OFFSET and FETCH FIRST clauses are used to return a specified range of rows beginning from a particular starting point in a result set. The ability to limit the rows retrieved from large result sets allows you to “page” through the data and improves efficiency.
+
+The OFFSET clause indicates the number of rows to skip before starting to return data. If the OFFSET clause is not used in a SELECT statement, the starting row is 0. The FETCH FIRST clause specifies the number of rows to be returned, either as an unsigned integer greater than or equal to 1 or as a percentage, from the starting point indicated in the OFFSET clause. If both OFFSET and FETCH FIRST are used in a SELECT statement, the OFFSET clause should come first.
 
 ```sql
 OFFSET x ROW|ROWS 
@@ -88,6 +101,35 @@ OFFSET x ROW|ROWS
 FETCH FIRST y ROW|ROWS ONLY
 [WITH TIES]
 ```
+
+
+
+The OFFSET and FETCH FIRST clauses are not supported in subqueries. OFFSET format
+
+### OFFSET format
+
+The OFFSET format is: OFFSET n {ROWS | ROW} ]
+
+n is an unsigned integer. If n is larger than the number of rows returned in the result set, then nothing is returned and no error message appears.
+
+ROWS is the same as ROW.
+
+
+### FETCH FIRST format
+
+The FETCH FIRST format is:
+
+FETCH FIRST [ n [ PERCENT ] ] { ROWS | ROW } {ONLY | WITH TIES } ]
+
+n is the number of rows to be returned. The default value is 1 if n is omitted.
+
+n is an unsigned integer greater than or equal to 1 unless it is followed by PERCENT. If n is followed by PERCENT, the value may be either a positive fractional value or an unsigned integer.
+
+ROWS is the same as ROW.
+
+WITH TIES must be used with the ORDER BY clause.
+
+WITH TIES allows more rows to be returned than specified in the FETCH count value because peer rows, those rows that are not distinct based on the ORDER BY clause, are also returned.
 
 ## FileMaker system columns
 
