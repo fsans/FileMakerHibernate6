@@ -86,17 +86,7 @@ public class PaginationTest {
     
     /**
      * Tests basic pagination using FETCH FIRST with ordered results.
-     * 
-     * Verifies:
-     * 1. FETCH FIRST n ROWS syntax is correctly handled
-     * 2. Results are properly ordered by ID
-     * 3. Correct number of records is returned
-     * 4. Result content matches expected values
-     * 
-     * Expected Behavior:
-     * - Returns exactly 5 records
-     * - Records are ordered by ID
-     * - Email addresses match the pattern user[1-5]@test.com
+     * Most basic form of pagination that retrieves the first N rows.
      */
     @Test
     @Order(1)
@@ -104,16 +94,14 @@ public class PaginationTest {
     @Description("Validates basic pagination using FETCH FIRST clause with ordered results")
     @Severity(SeverityLevel.BLOCKER)
     void testSimplePagination() {
-        transaction = session.beginTransaction(); // Start new transaction for test
+        transaction = session.beginTransaction();
         try {
-            // Get first 5 emails using FETCH FIRST
             Query<String> query = session.createQuery(
                 "SELECT c.email FROM Contact c ORDER BY c.id FETCH FIRST 5 ROWS ONLY", String.class);
             
             List<String> emails = query.getResultList();
             assertEquals(5, emails.size(), "Should return exactly 5 emails");
             
-            // Verify content
             for (int i = 0; i < emails.size(); i++) {
                 assertEquals("user" + (i + 1) + "@test.com", emails.get(i),
                     "Email should match");
@@ -126,7 +114,171 @@ public class PaginationTest {
             throw e;
         }
     }
-    
+
+    /**
+     * Tests pagination using OFFSET to skip records.
+     * Verifies that OFFSET properly skips the specified number of rows.
+     */
+    @Test
+    @Order(2)
+    @DisplayName("OFFSET with FETCH FIRST Test")
+    @Description("Validates pagination using OFFSET to skip records and FETCH FIRST to limit results")
+    @Severity(SeverityLevel.CRITICAL)
+    void testOffsetPagination() {
+        transaction = session.beginTransaction();
+        try {
+            // Get records 4-6 (3 records starting from position 3)
+            Query<String> query = session.createQuery(
+                "SELECT c.email FROM Contact c ORDER BY c.id OFFSET 3 ROWS FETCH FIRST 3 ROWS ONLY", 
+                String.class);
+            
+            List<String> emails = query.getResultList();
+            assertEquals(3, emails.size(), "Should return exactly 3 emails");
+            
+            // Should get emails 4, 5, and 6
+            for (int i = 0; i < emails.size(); i++) {
+                assertEquals("user" + (i + 4) + "@test.com", emails.get(i),
+                    "Email should match");
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+    }
+
+    /**
+     * Tests pagination with different ORDER BY clauses.
+     * Verifies that results are properly ordered and paginated.
+     */
+    @Test
+    @Order(3)
+    @DisplayName("ORDER BY with Pagination Test")
+    @Description("Validates pagination with different ordering options")
+    @Severity(SeverityLevel.CRITICAL)
+    void testOrderedPagination() {
+        transaction = session.beginTransaction();
+        try {
+            // Get first 5 records ordered by email descending
+            Query<String> query = session.createQuery(
+                "SELECT c.email FROM Contact c ORDER BY c.email DESC FETCH FIRST 5 ROWS ONLY", 
+                String.class);
+            
+            List<String> emails = query.getResultList();
+            assertEquals(5, emails.size(), "Should return exactly 5 emails");
+            
+            // Verify descending order
+            for (int i = 0; i < emails.size() - 1; i++) {
+                assertTrue(emails.get(i).compareTo(emails.get(i + 1)) > 0,
+                    "Emails should be in descending order");
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+    }
+
+    /**
+     * Tests edge cases of pagination:
+     * 1. OFFSET beyond available records
+     * 2. FETCH FIRST with zero rows
+     * 3. OFFSET with zero rows
+     * 4. Requesting more rows than available
+     */
+    @Test
+    @Order(4)
+    @DisplayName("Pagination Edge Cases Test")
+    @Description("Validates pagination behavior in edge cases")
+    @Severity(SeverityLevel.NORMAL)
+    void testPaginationEdgeCases() {
+        transaction = session.beginTransaction();
+        try {
+            // Test 1: OFFSET beyond available records
+            Query<String> query1 = session.createQuery(
+                "SELECT c.email FROM Contact c ORDER BY c.id OFFSET 20 ROWS FETCH FIRST 5 ROWS ONLY", 
+                String.class);
+            List<String> emails1 = query1.getResultList();
+            assertTrue(emails1.isEmpty(), "Should return empty list when offset is beyond available records");
+
+            // Test 2: FETCH FIRST with zero rows
+            Query<String> query2 = session.createQuery(
+                "SELECT c.email FROM Contact c ORDER BY c.id FETCH FIRST 0 ROWS ONLY", 
+                String.class);
+            List<String> emails2 = query2.getResultList();
+            assertTrue(emails2.isEmpty(), "Should return empty list when fetching zero rows");
+
+            // Test 3: Request more rows than available
+            Query<String> query3 = session.createQuery(
+                "SELECT c.email FROM Contact c ORDER BY c.id FETCH FIRST 20 ROWS ONLY", 
+                String.class);
+            List<String> emails3 = query3.getResultList();
+            assertEquals(TOTAL_CONTACTS, emails3.size(), 
+                "Should return all available records when requesting more than exist");
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+    }
+
+    /**
+     * Tests multiple sequential pages to ensure consistent results.
+     * Verifies that combining multiple page requests retrieves all records exactly once.
+     */
+    @Test
+    @Order(5)
+    @DisplayName("Sequential Pagination Test")
+    @Description("Validates consistency of results when paginating through all records")
+    @Severity(SeverityLevel.CRITICAL)
+    void testSequentialPagination() {
+        transaction = session.beginTransaction();
+        try {
+            final int PAGE_SIZE = 3;
+            int offset = 0;
+            int totalRecords = 0;
+            
+            // Collect all emails through pagination
+            while (true) {
+                Query<String> query = session.createQuery(
+                    "SELECT c.email FROM Contact c ORDER BY c.id OFFSET " + offset + 
+                    " ROWS FETCH FIRST " + PAGE_SIZE + " ROWS ONLY", 
+                    String.class);
+                
+                List<String> emails = query.getResultList();
+                if (emails.isEmpty()) {
+                    break;
+                }
+                
+                // Verify each page
+                for (int i = 0; i < emails.size(); i++) {
+                    assertEquals("user" + (offset + i + 1) + "@test.com", emails.get(i),
+                        "Email should match on page starting at offset " + offset);
+                }
+                
+                totalRecords += emails.size();
+                offset += PAGE_SIZE;
+            }
+            
+            assertEquals(TOTAL_CONTACTS, totalRecords, 
+                "Total records from all pages should match expected count");
+            
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+    }
+
     /**
      * Creates test data for pagination tests.
      * Generates TOTAL_CONTACTS number of Contact entities with predictable data.
