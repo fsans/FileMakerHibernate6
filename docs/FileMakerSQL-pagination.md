@@ -1,10 +1,10 @@
-## SQL Pagination in FileMaker
+# SQL Pagination in FileMaker
 
-### OFFSET Clause
+## OFFSET Clause
 
 The `OFFSET` clause determines the starting position of the records to be retrieved.
 
-#### Syntax
+### Syntax
 
 ```sql
 OFFSET n {ROWS | ROW}
@@ -15,7 +15,7 @@ OFFSET n {ROWS | ROW}
 - `ROWS` and `ROW` are interchangeable.
 - Cannot be used in subqueries.
 
-#### Example
+### Example
 
 ```sql
 SELECT emp_id, last_name, first_name 
@@ -26,16 +26,16 @@ OFFSET 25 ROWS;
 
 This query skips the first 25 records and starts retrieval from the 26th record.
 
-#### Edge Cases
+### Edge Cases
 
 - **`OFFSET 0`**: Returns all rows without skipping.
 - **`OFFSET n` where `n > total_rows`**: Returns an empty result set without an error.
 
-### FETCH FIRST Clause
+## FETCH FIRST Clause
 
 The `FETCH FIRST` clause limits the number of rows returned.
 
-#### Syntax
+### FETCH FIRST Clause Syntax
 
 ```sql
 FETCH FIRST [ n [ PERCENT ] ] { ROWS | ROW } {ONLY | WITH TIES }
@@ -46,7 +46,7 @@ FETCH FIRST [ n [ PERCENT ] ] { ROWS | ROW } {ONLY | WITH TIES }
 - `WITH TIES` ensures that all rows with the same ordering values are included.
 - Cannot be used in subqueries.
 
-#### Example
+#### FETCH FIRST Clause Example
 
 ```sql
 SELECT emp_id, last_name, first_name 
@@ -57,7 +57,7 @@ FETCH FIRST 10 ROWS ONLY;
 
 This query returns the first 10 records from the result set.
 
-#### Edge Cases
+### FETCH FIRST Clause Edge Cases
 
 - **`FETCH FIRST 0 ROWS ONLY`**: Returns an empty result set without an error.
 - **`FETCH FIRST 100 PERCENT ROWS ONLY`**: Returns all rows.
@@ -67,7 +67,7 @@ This query returns the first 10 records from the result set.
 
 Both clauses can be combined to implement pagination.
 
-#### Example
+#### Combining OFFSET and FETCH FIRST Example
 
 ```sql
 SELECT emp_id, last_name, first_name 
@@ -82,7 +82,7 @@ This query retrieves 10 rows starting from the 26th record.
 
 If `WITH TIES` is used, additional rows sharing the same values as the last retrieved row (based on `ORDER BY`) are included.
 
-#### Example
+#### WITH TIES Example
 
 ```sql
 SELECT emp_id, last_name, first_name 
@@ -93,7 +93,7 @@ FETCH FIRST 10 ROWS WITH TIES;
 
 This ensures all employees with the same last name and first name as the 10th record are included.
 
-#### Edge Cases
+### WITH TIES Edge Cases
 
 - **Without `ORDER BY`**: `WITH TIES` has no effect.
 - **More rows than `n` returned**: If multiple rows share the same value at the cutoff point, additional rows are returned.
