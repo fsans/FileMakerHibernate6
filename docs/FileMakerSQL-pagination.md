@@ -42,6 +42,7 @@ FETCH FIRST [ n [ PERCENT ] ] { ROWS | ROW } {ONLY | WITH TIES }
 ```
 
 - `n` defines the number of rows to return. Default is `1` if omitted.
+- Fetch size `n` must be a value greater than or equal to 0.
 - `PERCENT` fetches `n%` of the total result set.
 - `WITH TIES` ensures that all rows with the same ordering values are included.
 - Cannot be used in subqueries.

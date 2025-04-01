@@ -8,7 +8,7 @@ import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
 import org.hibernate.type.descriptor.jdbc.JdbcType;
 import org.hibernate.type.descriptor.jdbc.spi.JdbcTypeRegistry;
 import org.hibernate.community.dialect.identity.FileMakerIdentityColumnSupport;
-import org.hibernate.community.dialect.pagination.FileMakerLimitHandler;
+import org.hibernate.community.dialect.pagination.FileMakerLimitHandler2;
 import org.hibernate.sql.ast.SqlAstTranslatorFactory;
 
 import java.sql.Types;
@@ -98,7 +98,8 @@ public class FileMakerDialect extends Dialect {
 
     @Override
     public LimitHandler getLimitHandler() {
-        return FileMakerLimitHandler.INSTANCE;
+        // Use FileMakerLimitHandler2 which extends OffsetFetchLimitHandler
+        return new FileMakerLimitHandler2();
     }
 
      @Override

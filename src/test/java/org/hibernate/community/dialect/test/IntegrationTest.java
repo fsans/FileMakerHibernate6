@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.query.MutationQuery;
 import org.junit.jupiter.api.*;
 
 import io.qameta.allure.*;
@@ -39,7 +40,7 @@ import io.qameta.allure.*;
 @Severity(SeverityLevel.BLOCKER)
 @Issue("HIBERNATE-002")
 @TmsLink("TC-002")
-@Disabled("Temporarily disabled while debugging pagination")
+//@Disabled("Temporarily disabled while debugging pagination")
 public class IntegrationTest {
     
     private static SessionFactory sessionFactory;
@@ -614,7 +615,7 @@ public class IntegrationTest {
         
         // Clean up batch records
         transaction = session.beginTransaction();
-        Query<?> deleteQuery = session.createQuery(
+        MutationQuery deleteQuery = session.createMutationQuery(
             "DELETE FROM Contact c WHERE c.email LIKE :pattern"
         );
         deleteQuery.setParameter("pattern", "batch%");

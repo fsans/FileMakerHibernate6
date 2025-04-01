@@ -12,39 +12,51 @@ public class FileMakerLimitHandler extends AbstractLimitHandler {
      *
      * Offset syntax:
      * OFFSET n {ROWS | ROW} ]
+     * where n must be 0 or greater integer
      *
      * Fetch syntax
-     * FETCH FIRST [ n [ PERCENT ] ] { ROWS | ROW } {ONLY | WITH TIES } ]
-     *
+     * FETCH FIRST [ n [PERCENT] ] { ROWS | ROW } {ONLY | WITH TIES } ]
+     * where n must be 1 or greater integer
      */
 
     public static final FileMakerLimitHandler INSTANCE = new FileMakerLimitHandler();
 
-    private static final String OFFSET_TEMPLATE = " offset %d rows /*?*/";
-    private static final String FETCH_TEMPLATE = " fetch first %d rows only /*?*/";
-
     @Override
     public String processSql(String sql, Limit selection) {
-        StringBuilder stringBuilder = new StringBuilder(sql.length() + OFFSET_TEMPLATE.length() + FETCH_TEMPLATE.length());
+        StringBuilder stringBuilder = new StringBuilder(sql.length() + 50);
         stringBuilder.append(sql);
 
-        // Append offset and fetch if applicable
-        appendOffset(stringBuilder, selection);
-        appendFetch(stringBuilder, selection);
+        // FileMaker requires OFFSET before FETCH
+        if (hasFirstRow(selection)) {
+            // FileMaker accepts OFFSET ≥ 0
+            long offset = selection.getFirstRow() - 1;
+            // Avoid negative offsets
+            if (offset < 0) {
+                offset = 0;
+            }
+            stringBuilder.append(" offset ").append(offset).append(" rows");
+        }
+        
+        if (hasMaxRows(selection)) {
+            int maxRows = selection.getMaxRows();
+            // FileMaker requires FETCH FIRST n ROWS where n ≥ 1
+            if (maxRows < 1) {
+                // For zero rows, use FETCH FIRST 1 ROW and rely on OFFSET
+                maxRows = 1;
+            }
+            stringBuilder.append(" fetch first ").append(maxRows).append(" rows only");
+        }
 
         return stringBuilder.toString();
     }
 
-    private void appendOffset(StringBuilder stringBuilder, Limit selection) {
-        if (hasFirstRow(selection)) {
-            stringBuilder.append(String.format(OFFSET_TEMPLATE, selection.getFirstRow()));
-        }
-    }
-
-    private void appendFetch(StringBuilder stringBuilder, Limit selection) {
-        if (hasMaxRows(selection)) {
-            stringBuilder.append(String.format(FETCH_TEMPLATE, selection.getMaxRows()));
-        }
+    @Override
+    public int bindLimitParametersAtEndOfQuery(
+            Limit limit,
+            java.sql.PreparedStatement statement,
+            int index) throws java.sql.SQLException {
+        // We're not using parameters, so nothing to bind
+        return index;
     }
 
     @Override
@@ -54,6 +66,12 @@ public class FileMakerLimitHandler extends AbstractLimitHandler {
 
     @Override
     public boolean supportsLimitOffset() {
-        return supportsLimit();
+        return true;
+    }
+
+    @Override
+    public boolean supportsVariableLimit() {
+        // We're not using variable limits since we're embedding values directly
+        return false;
     }
 }
