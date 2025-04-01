@@ -42,5 +42,8 @@ allure-results/
 # Exclude docs/com directory and all its contents
 docs/com/
 
+# Exclude PDF files from docs directory
+docs/*.pdf
+
 # Keep scripts
 !scripts/*.sh
