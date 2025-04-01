@@ -1,4 +1,3 @@
-
 *.class
 
 # Log file
@@ -39,6 +38,9 @@ drivers/
 allure-results/
 */allure-results/
 **/allure-results/
+
+# Exclude docs/com directory and all its contents
+docs/com/
 
 # Keep scripts
 !scripts/*.sh
