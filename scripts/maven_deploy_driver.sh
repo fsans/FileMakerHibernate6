@@ -22,7 +22,7 @@ echo "Using version: ${VERSION}"
 cd "${PROJECT_ROOT}"
 
 mvn install:install-file \
--Dfile=./drivers/fmjdbc.${VERSION}.jar \
+-Dfile=drivers/fmjdbc.${VERSION}.jar \
 -DgroupId=com.filemaker.jdbc.Driver \
 -DartifactId=fmjdbc \
 -Dversion=${VERSION} \

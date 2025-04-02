@@ -22,9 +22,8 @@ echo "Using version: ${VERSION}"
 cd "${PROJECT_ROOT}"
 
 mvn install:install-file \
--Dfile=./target/FileMakerDialect6-${VERSION}.jar \
+-Dfile=target/FileMakerDialect6-${VERSION}.jar \
 -DgroupId=com.filemaker.hibernate.dialect \
 -DartifactId=filemakerdialect \
 -Dversion=${VERSION} \
--Dpackaging=jar \
--DgeneratePom=true
+-Dpackaging=jar
