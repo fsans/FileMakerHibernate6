@@ -387,21 +387,16 @@ public class PaginationTest {
             assertEquals(TOTAL_CONTACTS, result1.size(), 
                 "OFFSET 0 should return all rows without skipping");
             
-            // Test 2: OFFSET > total_rows - FileMaker throws an exception rather than returning empty set
+            // Test 2: OFFSET > total_rows - FileMaker returns an empty result set
             try {
                 Query<String> query2 = session.createQuery(
                     "SELECT c.email FROM Contact c ORDER BY c.id OFFSET " + (TOTAL_CONTACTS + 10) + " ROWS", 
                     String.class);
                 
                 List<String> result2 = query2.getResultList();
-                // This line won't be reached with FileMaker
-                fail("FileMaker should throw an exception for OFFSET > total_rows");
+                assertTrue(result2.isEmpty(), "Result set should be empty when OFFSET exceeds total rows");
             } catch (Exception e) {
-                // Expected behavior for FileMaker
-                assertTrue(e.getMessage().contains("error in the syntax") || 
-                           e.getMessage().contains("execution failed") ||
-                           e.getMessage().contains("FQL"),
-                    "FileMaker should throw a specific error for excessive OFFSET values");
+                fail("FileMaker should return empty result set for OFFSET > total_rows, not throw an exception: " + e.getMessage());
             }
             
             // Test 3: FETCH FIRST 0 ROWS ONLY - Should return empty result set

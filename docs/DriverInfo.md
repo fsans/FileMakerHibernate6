@@ -37,8 +37,8 @@ change the log level of the driver with:
 
 ```java
 setLogLevel(int param);
-// param >= 1 set to INFO
-// param >= 2 set to DEBUG
+// param >= 1 then log INFO
+// param >= 2 then log DEBUG
 ```
 
 

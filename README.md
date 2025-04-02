@@ -4,15 +4,15 @@ FileMaker Hibernate v6.5+ dialect
 
 ## Description
 
-FileMakerHibernate6 is a custom Hibernate dialect designed to facilitate seamless integration between Java applications and FileMaker databases. This project provides a robust framework for developers to leverage the power of Hibernate ORM while working with FileMaker's unique data structures and functionalities. With support for the latest FileMaker v6.5+ features, this dialect aims to simplify database interactions, enhance performance, and streamline the development process for Java developers using FileMaker as their backend.
+FileMakerHibernate6 is a custom Hibernate dialect designed to facilitate seamless integration between Java applications and FileMaker databases. This project provides a robust framework for developers to leverage the power of Hibernate ORM while working with FileMaker's unique data structures and functionalities. With support for Hibernate v6.5+ features, this dialect aims to simplify database interactions, enhance performance, and streamline the development process for Java developers using FileMaker as their backend.
 
 ## Features
 
-- Compatibility tested with FileMaker 20 and 21 (probably running with older versions, b ut not checked to date)
+- Compatibility tested with FileMaker 20 and 21 (probably running with older versions, but not checked to date)
 - Support for most standard Hibernate features, FileMaker's jdbc driver offers minimal JDBC3 standard support
 - Optimized for performance with FileMaker databases
 - Limit handling support
-- Custom identity support limited by 
+- Custom identity support limited by FileMaker jdbc driver capabilities
 
 ## Installation
 
@@ -24,7 +24,9 @@ Use the maven_deploy_dialect.sh to crete a local repository for the dialect
 cd project_root
 ./maven_deploy_dialect.sh 21.0.2
 ```
+
 then configure your pom.xml adding the dialect dependency
+
 ```xml
     <dependency>
         <groupId>com.filemaker.hibernate.dialect</groupId>
@@ -34,11 +36,14 @@ then configure your pom.xml adding the dialect dependency
 ````
 
 To add the FileMaker jdbc driver to your project use the maven install script provided:
+
 ```bash
 cd project_root
 ./maven_deploy_ddriver.sh 21.0.2
 ```
+
 then configure your pom.xml adding the driver dependency
+
 ```xml
     <!-- fmjdbc driver -->
     <dependency>
@@ -49,7 +54,6 @@ then configure your pom.xml adding the driver dependency
 ````
 
 ## Usage (spring boot example)
-
 
 Setup your application.yml as follows
 
