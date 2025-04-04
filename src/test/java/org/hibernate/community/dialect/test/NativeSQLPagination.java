@@ -420,28 +420,24 @@ public class NativeSQLPagination {
         
         // Test 3: PERCENT values in FETCH FIRST clause
         
-        // Test 3.1: Fractional PERCENT values should throw an exception with FileMaker
+        // Test 3.1: Fractional PERCENT values are supported in FileMaker
         String sqlFractional = "SELECT email FROM contact ORDER BY id FETCH FIRST 50.5 PERCENT ROWS ONLY";
         
         try (Statement stmt = jdbcConnection.createStatement();
              ResultSet rs = stmt.executeQuery(sqlFractional)) {
-            
-            // If we get here, fractional percentages are supported (unexpected for FileMaker)
-            System.out.println("Warning: Fractional PERCENT values are supported, which is unexpected for FileMaker SQL");
             
             int rowCount = 0;
             while (rs.next()) {
                 rowCount++;
             }
             
-            // Just log the result but don't assert since this shouldn't happen with FileMaker
-            System.out.println("Fractional PERCENT returned " + rowCount + " rows");
+            // 50.5% of 10 rows is 5.05, which returns 6 rows
+            // FileMaker appears to apply ceiling() to fractional results
+            assertEquals(6, rowCount, "Fractional PERCENT should return the ceiling of the calculated rows");
+            System.out.println("Fractional PERCENT (50.5%) returned " + rowCount + " rows");
             
         } catch (SQLException e) {
-            // This is the expected behavior for FileMaker
-            assertTrue(e.getMessage().contains("FQL"), 
-                "Expected FileMaker SQL error code (FQL) in exception message");
-            System.out.println("Expected error with fractional PERCENT: " + e.getMessage());
+            fail("Fractional PERCENT values should be supported in FileMaker SQL: " + e.getMessage());
         }
         
         // Test 3.2: Integer PERCENT values should work correctly

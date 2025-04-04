@@ -113,7 +113,7 @@ public class PaginationTest {
         try {
             // Verify data exists first
             Query<Long> countQuery = session.createQuery(
-                "SELECT COUNT(c) FROM Contact c", Long.class);
+                "SELECT COUNT(*) FROM Contact c", Long.class);
             long count = countQuery.getSingleResult();
             assertTrue(count > 0, "Test data should exist");
 
@@ -272,6 +272,20 @@ public class PaginationTest {
             List<String> emails3 = query3.getResultList();
             assertEquals(5, emails3.size(), 
                 "Should return 50% of available records (5 out of 10)");
+                
+            // Test 3.1: Fractional percentage-based fetch
+            // FileMaker applies ceiling() to fractional percentages
+            Query<String> query3f = session.createQuery(
+                "SELECT c.email FROM Contact c ORDER BY c.id FETCH FIRST 50.5 PERCENT ROWS ONLY", 
+                String.class);
+                
+            // Debug: Print the generated SQL
+            String sql3f = query3f.unwrap(org.hibernate.query.Query.class).getQueryString();
+            System.out.println("DEBUG - Generated SQL for query3f: " + sql3f);
+            
+            List<String> emails3f = query3f.getResultList();
+            assertEquals(6, emails3f.size(), 
+                "Should return ceiling of 50.5% of available records (6 out of 10)");
 
             // Test 4: Request more rows than available
             // Let dialect translate to FETCH FIRST n ROWS
@@ -374,7 +388,7 @@ public class PaginationTest {
         try {
             // Verify data exists first
             Query<Long> countQuery = session.createQuery(
-                "SELECT COUNT(c) FROM Contact c", Long.class);
+                "SELECT COUNT(*) FROM Contact c", Long.class);
             long totalCount = countQuery.getSingleResult();
             assertEquals(TOTAL_CONTACTS, totalCount, "Test data count should match expected");
 
