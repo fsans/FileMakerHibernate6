@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hibernate-configuration>     
   <session-factory>
-    <property name="connection.url">jdbc:filemaker://192.168.0.24/Contacts?loglevel=2</property>
+    <property name="connection.url">jdbc:filemaker://192.168.0.24/Contacts</property>
     <property name="connection.username">admin</property>
     <property name="connection.password">wakawaka</property>
     <property name="connection.driver_class">com.filemaker.jdbc.Driver</property>
