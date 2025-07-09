@@ -26,3 +26,7 @@ replay_pid*
 */target
 
 */drivers
+
+# Allure test results and reports
+allure-results/
+allure-report/
