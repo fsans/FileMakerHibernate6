@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.hibernate.community.dialect.test.GenerateRandomDataTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.617 s -- in org.hibernate.community.dialect.test.GenerateRandomDataTest

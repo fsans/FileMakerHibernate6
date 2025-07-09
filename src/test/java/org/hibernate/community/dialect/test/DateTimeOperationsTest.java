@@ -21,7 +21,6 @@ import io.qameta.allure.*;
 @Severity(SeverityLevel.CRITICAL)
 @Issue("HIBERNATE-004")
 @TmsLink("TC-004")
-//@Disabled("Temporarily disabled while debugging pagination")
 public class DateTimeOperationsTest {
     
     private Session session;
@@ -29,7 +28,7 @@ public class DateTimeOperationsTest {
     @Step("Initialize Hibernate session")
     @BeforeEach
     void setUp() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        session = HibernateUtilWithHikariCP.getSessionFactory().openSession();
     }
 
     @Step("Cleanup Hibernate session")
@@ -77,7 +76,6 @@ public class DateTimeOperationsTest {
                     retrieved.getLastContactDate().getTime() / 1000, 
                     "Last contact date should match (ignoring milliseconds)");
         
-        // Test timezone handling by comparing dates in different timezones
         ZoneId tokyo = ZoneId.of("Asia/Tokyo");
         ZoneId london = ZoneId.of("Europe/London");
         LocalDateTime tokyoTime = retrieved.getLastContactDate().toInstant()
@@ -89,7 +87,6 @@ public class DateTimeOperationsTest {
         assertTrue(tokyoTime.getHour() != londonTime.getHour(), 
                   "Times in different zones should have different hours");
         
-        // Cleanup
         tx = session.beginTransaction();
         session.remove(retrieved);
         tx.commit();

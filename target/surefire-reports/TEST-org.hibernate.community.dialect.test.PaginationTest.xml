@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.PaginationTest" time="1.383" tests="7" errors="0" skipped="2" failures="1">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/test-classes:/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/classes:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Volumes/DATA00/HOME/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Volumes/DATA00/HOME/.m2/repository/net/bytebuddy/byte-buddy/1.14.15/byte-buddy-1.14.15.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/filemaker/jdbc/Driver/fmjdbc/21.0.1/fmjdbc-21.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/com/zaxxer/HikariCP/5.0.1/HikariCP-5.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Europe/Madrid"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="ES"/>
+    <property name="sun.boot.library.path" value="/Volumes/DATA00/HOME/.sdkman/candidates/java/21.0.5-tem/lib"/>
+    <property name="sun.java.command" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire/surefirebooter-20250709143032356_3.jar /Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire 2025-07-09T14-30-32_160-jvmRun1 surefire-20250709143032356_1tmp surefire_0-20250709143032356_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/test-classes:/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/classes:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/orm/hibernate-core/6.5.3.Final/hibernate-core-6.5.3.Final.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar:/Volumes/DATA00/HOME/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar:/Volumes/DATA00/HOME/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar:/Volumes/DATA00/HOME/.m2/repository/net/bytebuddy/byte-buddy/1.14.15/byte-buddy-1.14.15.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/eclipse/angus/angus-activation/2.0.0/angus-activation-2.0.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit5/2.25.0/allure-junit5-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-junit-platform/2.25.0/allure-junit-platform-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-java-commons/2.25.0/allure-java-commons-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-model/2.25.0/allure-model-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/io/qameta/allure/allure-test-filter/2.25.0/allure-test-filter-2.25.0.jar:/Volumes/DATA00/HOME/.m2/repository/org/junit/platform/junit-platform-launcher/1.9.2/junit-platform-launcher-1.9.2.jar:/Volumes/DATA00/HOME/.m2/repository/com/filemaker/jdbc/Driver/fmjdbc/21.0.1/fmjdbc-21.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/Volumes/DATA00/HOME/.m2/repository/com/zaxxer/HikariCP/5.0.1/HikariCP-5.0.1.jar:/Volumes/DATA00/HOME/.m2/repository/org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.jar:"/>
+    <property name="allure.results.directory" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/allure-results"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Volumes/DATA00/HOME"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-10-15"/>
+    <property name="java.home" value="/Volumes/DATA00/HOME/.sdkman/candidates/java/21.0.5-tem"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6/target/surefire/surefirebooter-20250709143032356_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.5+11-LTS"/>
+    <property name="user.name" value="fsans"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="12.7.6"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.5+11"/>
+    <property name="localRepository" value="/Volumes/DATA00/HOME/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/tt/_k9fwwcj60v1ln2kdx1ct7hm0000gn/T/"/>
+    <property name="com.zaxxer.hikari.pool_number" value="2"/>
+    <property name="java.version" value="21.0.5"/>
+    <property name="user.dir" value="/Volumes/DATA00/HOME/Documents/WORK/GITHUB/FileMakerHibernate6"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Volumes/DATA00/HOME/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.5+11-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="testLimitHandler" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.195">
+    <system-out><![CDATA[Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+]]></system-out>
+    <system-err><![CDATA[Jul 09, 2025 2:30:43 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+INFO: HHH000026: Second-level cache disabled
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: Loaded JDBC driver class: com.filemaker.jdbc.Driver
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001012: Connecting with JDBC URL [jdbc:filemaker://192.168.0.24/Contacts?loglevel=2]
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=admin}
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH10001115: Connection pool size: 20 (min=1)
+Jul 09, 2025 2:30:43 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    2336275 nanoseconds spent acquiring 3 JDBC connections;
+    2203089 nanoseconds spent releasing 3 JDBC connections;
+    17387507 nanoseconds spent preparing 22 JDBC statements;
+    49271375 nanoseconds spent executing 22 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    594195 nanoseconds spent executing 4 flushes (flushing a total of 40 entities and 0 collections);
+    0 nanoseconds spent executing 0 pre-partial-flushes;
+    241299 nanoseconds spent executing 2 partial-flushes (flushing a total of 10 entities and 10 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testSimplePagination" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.305">
+    <system-out><![CDATA[Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* SELECT
+        COUNT(c) 
+    FROM
+        Contact c */ select
+            count(c1_0.id) 
+        from
+            contact c1_0
+Hibernate: 
+    /* SELECT
+        c.email 
+    FROM
+        Contact c 
+    ORDER BY
+        c.id 
+    FETCH
+        FIRST 5 ROWS ONLY */ select
+            c1_0.email 
+        from
+            contact c1_0 
+        order by
+            c1_0.id 
+        fetch
+            first 5 rows only
+Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+]]></system-out>
+    <system-err><![CDATA[Jul 09, 2025 2:30:43 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    2975394 nanoseconds spent acquiring 4 JDBC connections;
+    2995428 nanoseconds spent releasing 4 JDBC connections;
+    28252471 nanoseconds spent preparing 24 JDBC statements;
+    56192140 nanoseconds spent executing 24 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    895260 nanoseconds spent executing 5 flushes (flushing a total of 50 entities and 0 collections);
+    488936677549483 nanoseconds spent executing 2 pre-partial-flushes;
+    536443 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testOffsetPagination" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.212">
+    <system-out><![CDATA[Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* SELECT
+        c.email 
+    FROM
+        Contact c 
+    ORDER BY
+        c.id 
+    OFFSET
+        3 ROWS 
+    FETCH
+        FIRST 3 ROWS ONLY */ select
+            c1_0.email 
+        from
+            contact c1_0 
+        order by
+            c1_0.id 
+        offset
+            3 rows 
+        fetch
+            first 3 rows only
+Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+]]></system-out>
+    <system-err><![CDATA[Jul 09, 2025 2:30:44 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    2929969 nanoseconds spent acquiring 4 JDBC connections;
+    3211169 nanoseconds spent releasing 4 JDBC connections;
+    31876836 nanoseconds spent preparing 23 JDBC statements;
+    62203381 nanoseconds spent executing 23 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    888167 nanoseconds spent executing 5 flushes (flushing a total of 50 entities and 0 collections);
+    244468602134189 nanoseconds spent executing 1 pre-partial-flushes;
+    322919 nanoseconds spent executing 3 partial-flushes (flushing a total of 20 entities and 20 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testOrderedPagination" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.193">
+    <system-out><![CDATA[Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* SELECT
+        c.email 
+    FROM
+        Contact c 
+    ORDER BY
+        c.email DESC 
+    FETCH
+        FIRST 5 ROWS ONLY */ select
+            c1_0.email 
+        from
+            contact c1_0 
+        order by
+            c1_0.email desc 
+        fetch
+            first 5 rows only
+Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+]]></system-out>
+    <system-err><![CDATA[Jul 09, 2025 2:30:44 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    3211986 nanoseconds spent acquiring 4 JDBC connections;
+    3191461 nanoseconds spent releasing 4 JDBC connections;
+    29533436 nanoseconds spent preparing 23 JDBC statements;
+    58229388 nanoseconds spent executing 23 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    1068613 nanoseconds spent executing 5 flushes (flushing a total of 50 entities and 0 collections);
+    244468821187887 nanoseconds spent executing 1 pre-partial-flushes;
+    368315 nanoseconds spent executing 3 partial-flushes (flushing a total of 20 entities and 20 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testPaginationEdgeCases" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.0">
+    <skipped message="void org.hibernate.community.dialect.test.PaginationTest.testPaginationEdgeCases() is @Disabled"/>
+  </testcase>
+  <testcase name="testSequentialPagination" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.0">
+    <skipped message="void org.hibernate.community.dialect.test.PaginationTest.testSequentialPagination() is @Disabled"/>
+  </testcase>
+  <testcase name="testFileMakerSqlPaginationEdgeCases" classname="org.hibernate.community.dialect.test.PaginationTest" time="0.28">
+    <failure message="FileMaker should throw a specific error for excessive OFFSET values ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: FileMaker should throw a specific error for excessive OFFSET values ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:210)
+	at org.hibernate.community.dialect.test.PaginationTest.testFileMakerSqlPaginationEdgeCases(PaginationTest.java:401)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+	Suppressed: java.lang.IllegalStateException: Transaction already active
+		at org.hibernate.engine.transaction.internal.TransactionImpl.begin(TransactionImpl.java:74)
+		at org.hibernate.internal.AbstractSharedSessionContract.beginTransaction(AbstractSharedSessionContract.java:578)
+		at org.hibernate.community.dialect.test.PaginationTest.cleanupTestData(PaginationTest.java:496)
+		at org.hibernate.community.dialect.test.PaginationTest.tearDown(PaginationTest.java:75)
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+		at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+		at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+		at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:128)
+		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptAfterEachMethod(TimeoutExtension.java:110)
+		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+		at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:521)
+		at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeAfterEachMethodAdapter$24(ClassBasedTestDescriptor.java:511)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachMethods$10(TestMethodTestDescriptor.java:244)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:277)
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:277)
+		at org.junit.platform.commons.util.CollectionUtils.forEachInReverseOrder(CollectionUtils.java:217)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:276)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachMethods(TestMethodTestDescriptor.java:242)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:143)
+		... 49 more
+]]></failure>
+    <system-out><![CDATA[Hibernate: 
+    /* DELETE 
+    FROM
+        Contact */ delete 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        max(id) 
+    from
+        contact
+Hibernate: 
+    /* SELECT
+        COUNT(c) 
+    FROM
+        Contact c */ select
+            count(c1_0.id) 
+        from
+            contact c1_0
+Hibernate: 
+    /* SELECT
+        c.email 
+    FROM
+        Contact c 
+    ORDER BY
+        c.id 
+    OFFSET
+        0 ROWS */ select
+            c1_0.email 
+        from
+            contact c1_0 
+        order by
+            c1_0.id 
+        offset
+            0 rows
+Hibernate: 
+    /* SELECT
+        c.email 
+    FROM
+        Contact c 
+    ORDER BY
+        c.id 
+    OFFSET
+        20 ROWS */ select
+            c1_0.email 
+        from
+            contact c1_0 
+        order by
+            c1_0.id 
+        offset
+            20 rows
+]]></system-out>
+    <system-err><![CDATA[Jul 09, 2025 2:30:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+WARN: SQL Error: 27115, SQLState: HY000
+Jul 09, 2025 2:30:44 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+ERROR: [FileMaker][FileMaker JDBC] Index 1 out of bounds for length 1
+]]></system-err>
+  </testcase>
+</testsuite>

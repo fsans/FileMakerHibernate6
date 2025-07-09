@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.*;
 import io.qameta.allure.*;
+import org.hibernate.community.dialect.test.HibernateUtilWithHikariCP;
 
 /**
  * Tests for handling large text fields in FileMaker.
@@ -41,7 +42,7 @@ public class LargeTextFieldsTest {
     @Step("Initialize Hibernate session and transaction")
     @BeforeEach
     void setUp() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        session = HibernateUtilWithHikariCP.getSessionFactory().openSession();
         transaction = session.beginTransaction();
     }
 
