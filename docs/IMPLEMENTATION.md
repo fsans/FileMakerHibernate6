@@ -11,11 +11,9 @@ This implementation has been developed and tested with:
 | Component | Version |
 |-----------|---------|
 | **FileMaker Server** | 2025 (22.0.3) |
-| **FileMaker JDBC Driver** | fmjdbc 21.0.2 |
+| **FileMaker JDBC Driver** | fmjdbc 22.0.1 |
 | **Hibernate ORM** | 6.5.x / 6.6.x |
 | **Java** | 17+ |
-
-> **New Driver Available**: FileMaker Server 2025 (22.x) ships with a newer JDBC driver that has not yet been explored or tested with this dialect. The driver is provided with the FileMaker Server installer package. Future versions of this dialect may need updates to support any changes in the new driver.
 
 ---
 
@@ -420,10 +418,12 @@ Use `java.time` classes (LocalDate, LocalDateTime) for best compatibility.
 | Component | Tested Version |
 |-----------|---------------|
 | Hibernate ORM | 6.5.x, 6.6.x |
-| FileMaker JDBC Driver | 19.x, 20.x, 21.x |
-| FileMaker Server | 19, 20, 21, 2023, 2024 |
+| FileMaker JDBC Driver | 19.x, 20.x, 21.x, 22.x |
+| FileMaker Server | 19, 20, 21, 2023, 2024, 2025 |
 | Java | 17+ |
 | Apache DBCP2 | 2.9.x, 2.11.x |
+
+> **Last tested**: November 27, 2025 with FileMaker Server 2025 (22.0.3) and JDBC driver 22.0.1
 
 ---
 
