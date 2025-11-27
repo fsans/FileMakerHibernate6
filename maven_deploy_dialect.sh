@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Deploy FileMaker Hibernate Dialect to local Maven repository
+# Run 'mvn package' first to build the JAR
+#
+# Usage: ./maven_deploy_dialect.sh 21.0.2
+#
 # Check if version parameter is provided
 if [ $# -eq 0 ]; then
     echo "Error: Version parameter is required"

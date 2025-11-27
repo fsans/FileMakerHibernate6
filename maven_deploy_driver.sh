@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Deploy FileMaker JDBC driver to local Maven repository
+# The driver JAR must be placed in ./src/main/resources/fmjdbc.<version>.jar
+# Driver is not included in repo - obtain from FileMaker Server installation
+#
+# Usage: ./maven_deploy_driver.sh 21.0.2
+#
 # Check if version parameter is provided
 if [ $# -eq 0 ]; then
     echo "Error: Version parameter is required"

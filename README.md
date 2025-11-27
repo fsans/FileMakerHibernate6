@@ -1,90 +1,213 @@
-# FileMakerHibernate6
+# FileMaker Hibernate Dialect
 
-FileMaker Hibernate v6.5+ dialect
+Hibernate 6.5+ dialect for FileMaker databases.
 
-## Description
+## Overview
 
-FileMakerHibernate6 is a custom Hibernate dialect designed to facilitate seamless integration between Java applications and FileMaker databases. This project provides a robust framework for developers to leverage the power of Hibernate ORM while working with FileMaker's unique data structures and functionalities. With support for the latest FileMaker v6.5+ features, this dialect aims to simplify database interactions, enhance performance, and streamline the development process for Java developers using FileMaker as their backend.
+This project provides a custom Hibernate dialect for FileMaker Server, enabling Java applications to use Hibernate ORM with FileMaker databases via the FileMaker JDBC driver.
+
+## Tested Environment
+
+| Component | Version |
+|-----------|---------|
+| FileMaker Server | 2025 (22.0.3) |
+| FileMaker JDBC Driver | fmjdbc 21.0.2 |
+| Hibernate ORM | 6.5.x / 6.6.x |
+| Java | 17+ |
 
 ## Features
 
-- Compatibility tested with FileMaker 20 and 21 (probably running with older versions, b ut not checked to date)
-- Support for most standard Hibernate features, FileMaker's jdbc driver offers minimal JDBC3 standard support
-- Optimized for performance with FileMaker databases
-- Limit handling support
-- Custom identity support limited by 
+- ANSI SQL pagination with `OFFSET` / `FETCH FIRST` clauses
+- FileMaker-specific type mappings (VARCHAR, DOUBLE, TIMESTAMP, BLOB)
+- Custom identity support using `SELECT MAX(id)` strategy
+- Extensive reserved keyword handling (~100+ FileMaker-specific keywords)
+- Compatible with FileMaker Server 19, 20, 21, 2023, 2024, 2025
+
+## Known Limitations
+
+- **No HikariCP support** - FileMaker JDBC driver does not implement `Connection.isValid()`. Use Apache DBCP2 instead.
+- **No `getGeneratedKeys()`** - Driver does not support auto-generated key retrieval
+- **No `SELECT 1`** - Use `SELECT * FROM FileMaker_Tables` for connection validation
+- **No DDL generation** - Schema must be managed in FileMaker Pro
+
+See [docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md) for detailed documentation.
+
+---
 
 ## Installation
 
-To install the FileMaker Hibernate 6 dialect, include the necessary dependencies in your project and configure your Hibernate settings to use this dialect.
+### 1. Install the JDBC Driver
 
-Use the maven_deploy_dialect.sh to crete a local repository for the dialect
+The FileMaker JDBC driver is not publicly distributed. Obtain it from your FileMaker Server installation and install to your local Maven repository:
 
 ```bash
-cd project_root
+# Place the driver JAR in src/main/resources/
+cp /path/to/fmjdbc.jar ./src/main/resources/fmjdbc.21.0.2.jar
+
+# Install to local Maven repository
+./maven_deploy_driver.sh 21.0.2
+```
+
+### 2. Build and Install the Dialect
+
+```bash
+# Build the dialect
+mvn package
+
+# Install to local Maven repository
 ./maven_deploy_dialect.sh 21.0.2
 ```
-then configure your pom.xml adding the dialect dependency
-```xml
-    <dependency>
-        <groupId>com.filemaker.hibernate.dialect</groupId>
-        <artifactId>FileMakerDialect</artifactId>
-        <version>21.0.2</version>
-    </dependency>
-````
 
-To add the FileMaker jdbc driver to your project use the maven install script provided:
-```bash
-cd project_root
-./maven_deploy_ddriver.sh 21.0.2
+### 3. Add Dependencies to Your Project
+
+```xml
+<!-- FileMaker Hibernate Dialect -->
+<dependency>
+    <groupId>com.filemaker.hibernate.dialect</groupId>
+    <artifactId>FileMakerDialect</artifactId>
+    <version>21.0.2</version>
+</dependency>
+
+<!-- FileMaker JDBC Driver -->
+<dependency>
+    <groupId>com.filemaker.jdbc.Driver</groupId>
+    <artifactId>fmjdbc</artifactId>
+    <version>21.0.2</version>
+</dependency>
+
+<!-- Apache DBCP2 (required - HikariCP does not work) -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-dbcp2</artifactId>
+    <version>2.11.0</version>
+</dependency>
 ```
-then configure your pom.xml adding the driver dependency
-```xml
-    <!-- fmjdbc driver -->
-    <dependency>
-        <groupId>com.filemaker.jdbc.Driver</groupId>
-        <artifactId>fmjdbc</artifactId>
-        <version>21.0.1</version>
-    </dependency>
-````
 
-## Usage (spring boot example)
+---
 
+## Configuration
 
-Setup your application.yml as follows
+### Spring Boot (application.yml)
 
-```yml
-springboot
+```yaml
+spring:
   datasource:
-    driver-class-name: com.filemaker.jdbc.Driver
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:filemaker://filemaker_host/database_name
+    url: jdbc:filemaker://your-filemaker-host/DatabaseName
     username: your_username
     password: your_password
+    driver-class-name: com.filemaker.jdbc.Driver
+    # IMPORTANT: Use DBCP2, not HikariCP
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 1
+      min-idle: 1
+      max-idle: 5
+      max-total: 10
+      # FileMaker does not support SELECT 1
+      validation-query: SELECT * FROM FileMaker_Tables FETCH FIRST 1 ROWS ONLY
+      test-on-borrow: true
+      test-while-idle: true
+      duration-between-eviction-runs: 30s
+
   jpa:
     database-platform: org.hibernate.community.dialect.FileMakerDialect
-    show-sql: true # overwrite or set false in production
+    hibernate:
+      ddl-auto: none  # FileMaker does not support DDL
     properties:
       hibernate:
-        javax:
-          cache:
-            missing_cache_strategy: create
         dialect: org.hibernate.community.dialect.FileMakerDialect
-        ddl-auto: none
-        id:
-          new_generator_mappings: true
-        connection:
-          provider_disables_autocommit: false
-        cache:
-          use_second_level_cache: false
-          use_query_cache: false
-        generate_statistics: false
+        show_sql: true
         format_sql: true
-        use_sql_comments: false
-        naming:
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-          implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-
+        jdbc:
+          use_get_generated_keys: false
+          use_scrollable_resultset: false
 ```
 
-I recomend to use a connection pool, better hikari
+### Standalone Hibernate (hibernate.cfg.xml)
+
+```xml
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:filemaker://your-host/DatabaseName</property>
+    <property name="connection.username">admin</property>
+    <property name="connection.password">password</property>
+    <property name="connection.driver_class">com.filemaker.jdbc.Driver</property>
+    <property name="dialect">org.hibernate.community.dialect.FileMakerDialect</property>
+    <property name="hibernate.hbm2ddl.auto">none</property>
+    <property name="hibernate.jdbc.use_get_generated_keys">false</property>
+    <property name="hibernate.jdbc.use_scrollable_resultset">false</property>
+  </session-factory>
+</hibernate-configuration>
+```
+
+---
+
+## Entity Example
+
+### Using FileMakerBaseEntity (Recommended)
+
+Extend `FileMakerBaseEntity` to automatically get correct ID configuration and FileMaker best practices:
+
+```java
+import org.hibernate.community.dialect.entity.FileMakerBaseEntity;
+
+@Entity
+@Table(name = "contact")
+public class Contact extends FileMakerBaseEntity {
+    
+    @Column(name = "email")
+    private String email;
+    
+    @Column(name = "first_name")
+    private String firstName;
+    
+    // FileMaker stores all numbers as DOUBLE
+    @Column(name = "salary")
+    private Double salary;
+    
+    // FileMaker uses unified TIMESTAMP type
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
+    
+    // Getters and setters...
+}
+```
+
+The base class provides:
+
+- Pre-configured ID field (`insertable=false, updatable=false`)
+- Optional `rowId` and `modId` for FileMaker system fields
+- Proper `equals()` / `hashCode()` implementation
+- `isPersisted()` utility method
+
+### Manual Configuration
+
+If you prefer not to use the base class:
+
+```java
+@Entity
+@Table(name = "contact")
+public class Contact {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", insertable = false, updatable = false)
+    private Long id;
+    
+    // ... fields
+}
+```
+
+---
+
+## Documentation
+
+- [IMPLEMENTATION.md](docs/IMPLEMENTATION.md) - Detailed implementation notes, limitations, and workarounds
+- [DriverInfo.md](docs/DriverInfo.md) - FileMaker JDBC driver reference
+- [FileMakerSQL-pagination.md](docs/FileMakerSQL-pagination.md) - Pagination syntax reference
+
+---
+
+## License
+
+This project is provided as-is for the FileMaker developer community

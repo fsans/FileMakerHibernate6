@@ -9,7 +9,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -103,6 +105,14 @@ public class Contact implements Serializable {
     
     @Column(name = "update_timestamp", insertable = false, updatable = false)
     private LocalDateTime updateTimestamp;
+
+    // DATE type field (date only, no time component)
+    @Column(name = "create_date")
+    private LocalDate createDate;
+    
+    // TIME type field (time only, no date component)
+    @Column(name = "create_time")
+    private LocalTime createTime;
 
     public Contact() {
     }
@@ -273,5 +283,21 @@ public class Contact implements Serializable {
 
     public void setUpdateTimestamp(LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalTime createTime) {
+        this.createTime = createTime;
     }
 }
