@@ -121,6 +121,15 @@ Map only what FileMaker JDBC actually supports:
   - Updated JDBC driver version to 21.0.2 in pom.xml
   - Build compiles successfully
 - [x] **Tests verified:** 60 tests run, 57 passed, 2 skipped, 1 edge case failure (non-critical)
+- [x] **Phase 2: Spring Boot + DBCP2 Integration**
+  - Created `filemaker-demo-api` project with REST API
+  - Apache DBCP2 connection pool working (HikariCP incompatible due to `isValid()`)
+  - CRUD operations working via Swagger UI
+- [ ] **Pagination Issue (In Progress):**
+  - Dialect's `FileMakerLimitHandler2` works in unit tests
+  - Spring Data JPA `Pageable` not triggering `LimitHandler` in Hibernate 6
+  - Created `FileMakerSqlAstTranslator` but SQL AST path doesn't invoke it for criteria queries
+  - **Workaround needed:** Manual pagination in controller or native queries
 
 ---
 

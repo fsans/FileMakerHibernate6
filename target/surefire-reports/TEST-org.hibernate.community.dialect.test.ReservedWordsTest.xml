@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.TypeMappingTest" time="0.203" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.109" tests="32" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -60,14 +60,36 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testBinaryTypeMappings" classname="org.hibernate.community.dialect.test.TypeMappingTest" time="0.152">
-    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-]]></system-err>
-  </testcase>
-  <testcase name="testStringTypeMappings" classname="org.hibernate.community.dialect.test.TypeMappingTest" time="0.002"/>
-  <testcase name="testDefaultTypeMapping" classname="org.hibernate.community.dialect.test.TypeMappingTest" time="0.002"/>
-  <testcase name="testNumericTypeMappings" classname="org.hibernate.community.dialect.test.TypeMappingTest" time="0.001"/>
-  <testcase name="testDateTimeTypeMappings" classname="org.hibernate.community.dialect.test.TypeMappingTest" time="0.001"/>
+  <testcase name="shouldContainDataTypeKeywords" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.057"/>
+  <testcase name="shouldContainFunctionKeywords" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[1]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.006"/>
+  <testcase name="shouldRecognizeKeyword(String)[2]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[3]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[4]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[5]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[6]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[7]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[8]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[9]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[10]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[11]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[12]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[13]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[14]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[15]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[16]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[17]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[18]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[19]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[20]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[21]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[22]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[23]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldRecognizeKeyword(String)[24]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[25]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[26]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[27]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.0"/>
+  <testcase name="shouldRecognizeKeyword(String)[28]" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldContainFileMakerSpecificKeywords" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
+  <testcase name="shouldContainAllBaseKeywords" classname="org.hibernate.community.dialect.test.ReservedWordsTest" time="0.001"/>
 </testsuite>

@@ -183,7 +183,28 @@ public class FileMakerDialect extends Dialect {
 
     @Override
     public SqlAstTranslatorFactory getSqlAstTranslatorFactory() {
-        return super.getSqlAstTranslatorFactory();
+        // Use custom translator that embeds OFFSET/FETCH values directly
+        // FileMaker doesn't support parameterized pagination
+        return new FileMakerSqlAstTranslatorFactory();
+    }
+
+    /**
+     * FileMaker doesn't support parameterized OFFSET/FETCH in SQL AST.
+     * Return false to force use of LimitHandler.processSql() which embeds values directly.
+     */
+    @Override
+    public boolean supportsOffsetInSubquery() {
+        return false;
+    }
+
+    /**
+     * FileMaker supports FETCH FIRST n ROWS ONLY syntax.
+     * Return false to force use of LimitHandler instead of SQL AST rendering.
+     */
+    @Override
+    public boolean supportsFetchClause(org.hibernate.query.sqm.FetchClauseType fetchClauseType) {
+        // Return false to force LimitHandler usage instead of SQL AST
+        return false;
     }
 
 
