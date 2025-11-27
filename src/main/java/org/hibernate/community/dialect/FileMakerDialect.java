@@ -14,11 +14,29 @@ import org.hibernate.sql.ast.SqlAstTranslatorFactory;
 import java.sql.Types;
 
 /**
- * An SQL dialect for FileMaker.
+ * Hibernate dialect for FileMaker databases via JDBC.
+ * <p>
+ * Supports FileMaker Server 20+ with the FileMaker JDBC driver.
+ * <p>
+ * Key features:
+ * <ul>
+ *   <li>OFFSET/FETCH pagination (ANSI SQL standard)</li>
+ *   <li>Type mappings for NUMERIC, VARCHAR, DATE, TIME, TIMESTAMP, BLOB</li>
+ *   <li>Identity column support via max(id) workaround</li>
+ * </ul>
+ * <p>
+ * Limitations (FileMaker JDBC driver constraints):
+ * <ul>
+ *   <li>No DDL support (CREATE/ALTER/DROP)</li>
+ *   <li>No auto-generated keys retrieval</li>
+ *   <li>No scrollable result sets</li>
+ *   <li>No savepoints</li>
+ *   <li>No subquery pagination</li>
+ * </ul>
  *
  * @author Francesc Sans
+ * @see <a href="https://github.com/fsans/FileMakerHibernate6">GitHub Repository</a>
  */
-
 public class FileMakerDialect extends Dialect {
 
     private static final DatabaseVersion DEFAULT_VERSION = DatabaseVersion.make( 21, 0 );
@@ -45,10 +63,8 @@ public class FileMakerDialect extends Dialect {
             int precision,
             int scale,
 
-             /* driver supported data types: 
-                "numeric", "decimal", "int", "varchar", "character varying", "blob", "varbinary", "longvarbinary", "binary varying", "date", "time", "timestamp" 
-                 2, 3, 4, 12, 12, -2, -2, -2, -2, 91, 92, 93
-            */
+            // FileMaker JDBC driver supported types:
+            // NUMERIC(2), DECIMAL(3), INTEGER(4), VARCHAR(12), BLOB(-2), DATE(91), TIME(92), TIMESTAMP(93)
             JdbcTypeRegistry jdbcTypeRegistry) {
 
         switch (jdbcTypeCode) {
@@ -165,19 +181,10 @@ public class FileMakerDialect extends Dialect {
         return false;
     }
 
-    // New method required for Hibernate 6
     @Override
     public SqlAstTranslatorFactory getSqlAstTranslatorFactory() {
         return super.getSqlAstTranslatorFactory();
     }
-
-    // New method required for Hibernate 6
-    /*
-    @Override
-    public void initializeFunctionRegistry(QueryEngine queryEngine) {
-        super.initializeFunctionRegistry(queryEngine);
-    }
-    */
 
 
     @Override
@@ -190,16 +197,12 @@ public class FileMakerDialect extends Dialect {
 		throw new UnsupportedOperationException( "No drop schema syntax supported by " + getClass().getName() );
 	}
 
-        /* 
-     * Reserved FileMaker specific keywords
-     * According to the ANSI SQL:2003 standard, SQL keywords are case-insensitive.
-     * However, it's a best practice to use uppercase when registering keywords to
-     * maintain consistency 
-     * 
+    /**
+     * Registers FileMaker-specific SQL keywords.
+     * Keywords are registered in lowercase as Hibernate's Dialect.java checks tokens in lowercase.
      */
-
-     @Override
-     protected void registerDefaultKeywords() {
+    @Override
+    protected void registerDefaultKeywords() {
  
          // default ansi keywords as in org.hibernate.engine.jdbc.env.spi.AnsiSqlKeywords
          super.registerDefaultKeywords();

@@ -29,10 +29,10 @@ A minimal, functional Hibernate 6.5+ dialect for Spring Boot + FileMaker + Hikar
 
 ### 1.1 Simplify `FileMakerDialect.java`
 
-- [ ] Remove unused/commented code
-- [ ] Keep only essential type mappings: `NUMERIC`, `VARCHAR`, `DATE`, `TIME`, `TIMESTAMP`, `BLOB`
-- [ ] Confirm `FileMakerLimitHandler2` is the only pagination handler
-- [ ] Remove `FileMakerLimitHandler` (legacy)
+- [x] Remove unused/commented code
+- [x] Keep only essential type mappings: `NUMERIC`, `VARCHAR`, `DATE`, `TIME`, `TIMESTAMP`, `BLOB`
+- [x] Confirm `FileMakerLimitHandler2` is the only pagination handler
+- [x] Remove `FileMakerLimitHandler` (legacy)
 
 ### 1.2 Fix Identity Strategy
 
@@ -114,7 +114,12 @@ Map only what FileMaker JDBC actually supports:
 
 - [x] Created `geronimo` branch
 - [x] Created this plan document
-- [ ] Starting Phase 1.1...
+- [x] **Phase 1.1 Complete:**
+  - Removed legacy `FileMakerLimitHandler.java`
+  - Cleaned up `FileMakerDialect.java` (improved docs, removed commented code)
+  - Improved `FileMakerIdentityColumnSupport.java` (better docs, fixed column name in getIdentitySelectString)
+  - Updated JDBC driver version to 21.0.2 in pom.xml
+  - Build compiles successfully
 
 ---
 

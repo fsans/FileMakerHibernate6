@@ -54,11 +54,11 @@
             <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- fmjdbc driver -->
+        <!-- fmjdbc driver (installed locally via maven_deploy_driver.sh) -->
         <dependency>
             <groupId>com.filemaker.jdbc.Driver</groupId>
             <artifactId>fmjdbc</artifactId>
-            <version>21.0.1</version>
+            <version>21.0.2</version>
         </dependency>
         <dependency>
             <groupId>jakarta.persistence</groupId>
