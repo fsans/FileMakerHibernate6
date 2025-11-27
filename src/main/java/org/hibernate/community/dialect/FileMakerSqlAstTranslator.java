@@ -1,12 +1,14 @@
 package org.hibernate.community.dialect;
 
 import org.hibernate.engine.spi.SessionFactoryImplementor;
-import org.hibernate.sql.ast.spi.StandardSqlAstTranslator;
+import org.hibernate.query.spi.Limit;
+import org.hibernate.sql.ast.spi.AbstractSqlAstTranslator;
 import org.hibernate.sql.ast.tree.Statement;
 import org.hibernate.sql.ast.tree.expression.Expression;
 import org.hibernate.sql.ast.tree.expression.Literal;
 import org.hibernate.sql.ast.tree.expression.QueryLiteral;
 import org.hibernate.sql.ast.tree.select.QueryPart;
+import org.hibernate.sql.ast.tree.select.QuerySpec;
 import org.hibernate.sql.exec.spi.JdbcOperation;
 
 /**
@@ -14,8 +16,10 @@ import org.hibernate.sql.exec.spi.JdbcOperation;
  * by embedding OFFSET/FETCH values directly in SQL instead of using parameters.
  * <p>
  * FileMaker JDBC driver does not support parameterized OFFSET/FETCH clauses.
+ * This translator intercepts pagination rendering and embeds literal values
+ * instead of using JDBC parameters.
  */
-public class FileMakerSqlAstTranslator<T extends JdbcOperation> extends StandardSqlAstTranslator<T> {
+public class FileMakerSqlAstTranslator<T extends JdbcOperation> extends AbstractSqlAstTranslator<T> {
 
     public FileMakerSqlAstTranslator(SessionFactoryImplementor sessionFactory, Statement statement) {
         super(sessionFactory, statement);
@@ -52,24 +56,67 @@ public class FileMakerSqlAstTranslator<T extends JdbcOperation> extends Standard
     }
 
     @Override
-    protected void renderOffsetFetchClause(QueryPart queryPart, boolean renderOffsetRowsKeyword) {
-        // FileMaker uses ANSI SQL syntax: OFFSET n ROWS FETCH FIRST m ROWS ONLY
-        // We override to ensure literal values are used instead of parameters
+    public void visitOffsetFetchClause(QueryPart queryPart) {
+        // Check if we have a Limit set (from setFirstResult/setMaxResults)
+        // This is the path Spring Data JPA uses
+        final Limit limit = getLimit();
         
-        final Expression offsetExpression = queryPart.getOffsetClauseExpression();
-        final Expression fetchExpression = queryPart.getFetchClauseExpression();
-        
-        if (offsetExpression != null) {
-            appendSql(" offset ");
-            renderOffsetExpression(offsetExpression);
-            appendSql(" rows");
-        }
-        
-        if (fetchExpression != null) {
-            appendSql(" fetch first ");
-            renderFetchExpression(fetchExpression);
-            appendSql(" rows only");
+        if (limit != null && (limit.getFirstRow() != null || limit.getMaxRows() != null)) {
+            // Render pagination from Limit object with literal values
+            final int offset = limit.getFirstRow() != null ? limit.getFirstRow() : 0;
+            final Integer maxRows = limit.getMaxRows();
+            
+            if (offset > 0) {
+                appendSql(" offset ");
+                appendSql(String.valueOf(offset));
+                appendSql(" rows");
+            }
+            
+            if (maxRows != null && maxRows > 0) {
+                appendSql(" fetch first ");
+                appendSql(String.valueOf(maxRows));
+                appendSql(" rows only");
+            }
+        } else {
+            // Fall back to query part expressions (HQL OFFSET/FETCH)
+            final Expression offsetExpression = queryPart.getOffsetClauseExpression();
+            final Expression fetchExpression = queryPart.getFetchClauseExpression();
+            
+            if (offsetExpression != null) {
+                appendSql(" offset ");
+                renderOffsetExpression(offsetExpression);
+                appendSql(" rows");
+            }
+            
+            if (fetchExpression != null) {
+                appendSql(" fetch first ");
+                renderFetchExpression(fetchExpression);
+                appendSql(" rows only");
+            }
         }
     }
 
+    @Override
+    protected void renderOffsetFetchClause(QueryPart queryPart, boolean renderOffsetRowsKeyword) {
+        // Delegate to visitOffsetFetchClause which handles both Limit and expression-based pagination
+        visitOffsetFetchClause(queryPart);
+    }
+
+    @Override
+    public void visitQuerySpec(QuerySpec querySpec) {
+        // Let parent render the query
+        super.visitQuerySpec(querySpec);
+    }
+
+    @Override
+    protected boolean useOffsetFetchClause(QueryPart queryPart) {
+        // Always use offset/fetch clause rendering (not window functions emulation)
+        return true;
+    }
+
+    @Override
+    protected boolean isRowsOnlyFetchClauseType(QueryPart queryPart) {
+        // FileMaker only supports ROWS ONLY, not WITH TIES
+        return true;
+    }
 }
