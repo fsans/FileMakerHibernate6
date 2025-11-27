@@ -120,6 +120,7 @@ Map only what FileMaker JDBC actually supports:
   - Improved `FileMakerIdentityColumnSupport.java` (better docs, fixed column name in getIdentitySelectString)
   - Updated JDBC driver version to 21.0.2 in pom.xml
   - Build compiles successfully
+- [x] **Tests verified:** 60 tests run, 57 passed, 2 skipped, 1 edge case failure (non-critical)
 
 ---
 
