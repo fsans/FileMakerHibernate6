@@ -20,6 +20,7 @@ This project provides a custom Hibernate dialect for FileMaker Server, enabling 
 - ANSI SQL pagination with `OFFSET` / `FETCH FIRST` clauses
 - FileMaker-specific type mappings (VARCHAR, DOUBLE, TIMESTAMP, BLOB)
 - Custom identity support using ROWID-based strategy
+- Container field (binary data) support via native JDBC
 - Extensive reserved keyword handling (~100+ FileMaker-specific keywords)
 - Compatible with FileMaker Server 19, 20, 21, 2023, 2024, 2025
 
@@ -200,11 +201,64 @@ public class Contact {
 
 ---
 
+## Container Fields (Binary Data)
+
+FileMaker container fields require special SQL syntax and **cannot** use standard JPA `@Lob` mapping.
+
+### Supported Format Codes
+
+| Code | Format |
+|------|--------|
+| `GIFf` | Graphics Interchange Format |
+| `JPEG` | Photographic images |
+| `TIFF` | Raster file format |
+| `PDF ` | Portable Document Format (trailing space required!) |
+| `PNGf` | Bitmap image format (PNG) |
+
+### SQL Syntax
+
+```sql
+-- Upload binary data
+UPDATE table SET container_field = ? AS 'filename.ext' WHERE id = ?
+
+-- Download binary data (use correct type code!)
+SELECT GetAs(container_field, 'PNGf') FROM table WHERE id = ?
+
+-- Get file reference
+SELECT CAST(container_field AS VARCHAR) FROM table WHERE id = ?
+
+-- Clear container
+UPDATE table SET container_field = NULL WHERE id = ?
+```
+
+### Usage
+
+Use native JDBC with `PreparedStatement.setBytes()` for uploads and `ResultSet.getBytes()` for downloads. See `ContainerFieldTest.java` for examples.
+
+### Content Type Detection
+
+When downloading, the API needs to know the format code. Detection strategy (fast → slow):
+
+1. **`photo_content_type` field** - No extra query (fastest)
+2. **File reference** - Single query via `CAST(container AS VARCHAR)`
+3. **Format probing** - Tries each format until data is returned (slowest)
+
+**Recommended:** Set up FileMaker auto-enter calculation on the content type field:
+
+```
+GetContainerAttribute ( photo_content ; "MIMEType" )
+```
+
+This ensures optimal performance by avoiding extra queries or probing.
+
+---
+
 ## Documentation
 
 - [IMPLEMENTATION.md](docs/IMPLEMENTATION.md) - Detailed implementation notes, limitations, and workarounds
 - [DriverInfo.md](docs/DriverInfo.md) - FileMaker JDBC driver reference
 - [FileMakerSQL-pagination.md](docs/FileMakerSQL-pagination.md) - Pagination syntax reference
+- [FileMakerSQL-binaryData.md](docs/FileMakerSQL-binaryData.md) - Container field syntax reference
 
 ---
 

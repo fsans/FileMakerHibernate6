@@ -77,8 +77,8 @@ Total: 60 tests, 0 failures, 2 skipped
 
 ### Priority 1 - Near Term
 
-- [ ] Binary/BLOB handling with `GetAs()`/`PutAs()`
-- [ ] Container field support
+- [x] Binary/BLOB handling with `GetAs()`/`PutAs()` ✅ Complete
+- [x] Container field support ✅ Complete
 
 ### Priority 2 - Medium Term
 

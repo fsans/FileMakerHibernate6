@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="10.907" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.hibernate.community.dialect.test.ContainerFieldTest" time="9.783" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -60,7 +60,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testLocalDatePersistence" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="1.231">
+  <testcase name="testDownloadFromContainerField" classname="org.hibernate.community.dialect.test.ContainerFieldTest" time="2.346">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -81,71 +81,87 @@ Hibernate:
                 contact
         )
 Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
     /* delete for org.hibernate.community.dialect.test.Contact */delete 
     from
         contact 
     where
         id=?
 ]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:27 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+    <system-err><![CDATA[Nov 27, 2025 8:05:38 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-Nov 27, 2025 8:05:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Nov 27, 2025 8:05:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-Nov 27, 2025 8:05:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Nov 27, 2025 8:05:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: Loaded JDBC driver class: com.filemaker.jdbc.Driver
-Nov 27, 2025 8:05:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Nov 27, 2025 8:05:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001012: Connecting with JDBC URL [jdbc:filemaker://192.168.30.130/Contacts?loglevel=2]
-Nov 27, 2025 8:05:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Nov 27, 2025 8:05:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=admin}
-Nov 27, 2025 8:05:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Nov 27, 2025 8:05:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-Nov 27, 2025 8:05:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+Nov 27, 2025 8:05:38 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH10001115: Connection pool size: 20 (min=1)
-Nov 27, 2025 8:05:28 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+Nov 27, 2025 8:05:41 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    79838791 nanoseconds spent acquiring 3 JDBC connections;
-    79859958 nanoseconds spent releasing 3 JDBC connections;
-    146239876 nanoseconds spent preparing 4 JDBC statements;
-    188792250 nanoseconds spent executing 4 JDBC statements;
+    53960416 nanoseconds spent acquiring 2 JDBC connections;
+    54859291 nanoseconds spent releasing 2 JDBC connections;
+    149437124 nanoseconds spent preparing 3 JDBC statements;
+    162722875 nanoseconds spent executing 3 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    88402542 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    96785583 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testLocalDateEdgeCases" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="1.251">
+  <testcase name="testPdfContainerField" classname="org.hibernate.community.dialect.test.ContainerFieldTest" time="1.669">
+    <system-out><![CDATA[Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        id 
+    from
+        contact 
+    where
+        ROWID = (
+            select
+                max(ROWID) 
+            from
+                contact
+        )
+PDF container reference: fm17_cert.pdf
+Hibernate: 
+    /* delete for org.hibernate.community.dialect.test.Contact */delete 
+    from
+        contact 
+    where
+        id=?
+]]></system-out>
+    <system-err><![CDATA[Nov 27, 2025 8:05:43 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    136415250 nanoseconds spent acquiring 2 JDBC connections;
+    54118541 nanoseconds spent releasing 2 JDBC connections;
+    153270125 nanoseconds spent preparing 3 JDBC statements;
+    160631125 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    163610999 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    0 nanoseconds spent executing 0 pre-partial-flushes;
+    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testUploadToContainerField" classname="org.hibernate.community.dialect.test.ContainerFieldTest" time="1.355">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -166,82 +182,49 @@ Hibernate:
                 contact
         )
 Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
+    /* delete for org.hibernate.community.dialect.test.Contact */delete 
     from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* update
-        for org.hibernate.community.dialect.test.Contact */update contact 
-    set
-        company=?,
-        create_date=?,
-        create_time=?,
-        email=?,
-        first_name=?,
-        job_title=?,
-        last_contact_date=?,
-        last_name=?,
-        login=?,
-        notes=?,
-        password=?,
-        photo_content_type=?,
-        photo_url=?,
-        title=?,
-        website=? 
+        contact 
     where
         id=?
+]]></system-out>
+    <system-err><![CDATA[Nov 27, 2025 8:05:44 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    53368791 nanoseconds spent acquiring 2 JDBC connections;
+    54071125 nanoseconds spent releasing 2 JDBC connections;
+    88448917 nanoseconds spent preparing 3 JDBC statements;
+    147942083 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    95176000 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    0 nanoseconds spent executing 0 pre-partial-flushes;
+    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testPdfMagicBytes" classname="org.hibernate.community.dialect.test.ContainerFieldTest" time="1.431">
+    <system-out><![CDATA[Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: 
     select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
+        id 
     from
-        contact c1_0 
+        contact 
     where
-        c1_0.id=?
+        ROWID = (
+            select
+                max(ROWID) 
+            from
+                contact
+        )
+PDF magic bytes verified: %PDF
 Hibernate: 
     /* delete for org.hibernate.community.dialect.test.Contact */delete 
     from
@@ -249,23 +232,67 @@ Hibernate:
     where
         id=?
 ]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:30 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Nov 27, 2025 8:05:45 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    134678166 nanoseconds spent acquiring 5 JDBC connections;
-    144492583 nanoseconds spent releasing 5 JDBC connections;
-    228123333 nanoseconds spent preparing 6 JDBC statements;
-    237270792 nanoseconds spent executing 6 JDBC statements;
+    132518124 nanoseconds spent acquiring 2 JDBC connections;
+    53564916 nanoseconds spent releasing 2 JDBC connections;
+    86233918 nanoseconds spent preparing 3 JDBC statements;
+    151490958 nanoseconds spent executing 3 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    178408875 nanoseconds spent executing 3 flushes (flushing a total of 3 entities and 0 collections);
+    94541667 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
 ]]></system-err>
   </testcase>
-  <testcase name="testLocalTimePersistence" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="1.622">
+  <testcase name="testGetContainerReference" classname="org.hibernate.community.dialect.test.ContainerFieldTest" time="1.09">
+    <system-out><![CDATA[Hibernate: 
+    /* insert for
+        org.hibernate.community.dialect.test.Contact */insert 
+    into
+        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        id 
+    from
+        contact 
+    where
+        ROWID = (
+            select
+                max(ROWID) 
+            from
+                contact
+        )
+Container reference: chemical.png
+Hibernate: 
+    /* delete for org.hibernate.community.dialect.test.Contact */delete 
+    from
+        contact 
+    where
+        id=?
+]]></system-out>
+    <system-err><![CDATA[Nov 27, 2025 8:05:46 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+INFO: Session Metrics {
+    78139291 nanoseconds spent acquiring 2 JDBC connections;
+    64028250 nanoseconds spent releasing 2 JDBC connections;
+    154088626 nanoseconds spent preparing 3 JDBC statements;
+    149811333 nanoseconds spent executing 3 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    93786376 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    0 nanoseconds spent executing 0 pre-partial-flushes;
+    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+]]></system-err>
+  </testcase>
+  <testcase name="testClearContainerField" classname="org.hibernate.community.dialect.test.ContainerFieldTest" time="1.457">
     <system-out><![CDATA[Hibernate: 
     /* insert for
         org.hibernate.community.dialect.test.Contact */insert 
@@ -286,526 +313,23 @@ Hibernate:
                 contact
         )
 Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
     /* delete for org.hibernate.community.dialect.test.Contact */delete 
     from
         contact 
     where
         id=?
 ]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:31 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
+    <system-err><![CDATA[Nov 27, 2025 8:05:48 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
 INFO: Session Metrics {
-    91696501 nanoseconds spent acquiring 3 JDBC connections;
-    94919458 nanoseconds spent releasing 3 JDBC connections;
-    548113667 nanoseconds spent preparing 4 JDBC statements;
-    180448042 nanoseconds spent executing 4 JDBC statements;
+    52824624 nanoseconds spent acquiring 2 JDBC connections;
+    52129000 nanoseconds spent releasing 2 JDBC connections;
+    91812083 nanoseconds spent preparing 3 JDBC statements;
+    144443749 nanoseconds spent executing 3 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    96717250 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
-    0 nanoseconds spent executing 0 pre-partial-flushes;
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-]]></system-err>
-  </testcase>
-  <testcase name="testLocalTimeEdgeCases" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="1.753">
-    <system-out><![CDATA[Hibernate: 
-    /* insert for
-        org.hibernate.community.dialect.test.Contact */insert 
-    into
-        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    select
-        id 
-    from
-        contact 
-    where
-        ROWID = (
-            select
-                max(ROWID) 
-            from
-                contact
-        )
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* update
-        for org.hibernate.community.dialect.test.Contact */update contact 
-    set
-        company=?,
-        create_date=?,
-        create_time=?,
-        email=?,
-        first_name=?,
-        job_title=?,
-        last_contact_date=?,
-        last_name=?,
-        login=?,
-        notes=?,
-        password=?,
-        photo_content_type=?,
-        photo_url=?,
-        title=?,
-        website=? 
-    where
-        id=?
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* delete for org.hibernate.community.dialect.test.Contact */delete 
-    from
-        contact 
-    where
-        id=?
-]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:33 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
-INFO: Session Metrics {
-    224120334 nanoseconds spent acquiring 5 JDBC connections;
-    208070666 nanoseconds spent releasing 5 JDBC connections;
-    312362499 nanoseconds spent preparing 6 JDBC statements;
-    311997750 nanoseconds spent executing 6 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    244133000 nanoseconds spent executing 3 flushes (flushing a total of 3 entities and 0 collections);
-    0 nanoseconds spent executing 0 pre-partial-flushes;
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-]]></system-err>
-  </testcase>
-  <testcase name="testLocalDateTimePersistence" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="1.243">
-    <system-out><![CDATA[Hibernate: 
-    /* insert for
-        org.hibernate.community.dialect.test.Contact */insert 
-    into
-        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    select
-        id 
-    from
-        contact 
-    where
-        ROWID = (
-            select
-                max(ROWID) 
-            from
-                contact
-        )
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* delete for org.hibernate.community.dialect.test.Contact */delete 
-    from
-        contact 
-    where
-        id=?
-]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:34 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
-INFO: Session Metrics {
-    162613666 nanoseconds spent acquiring 3 JDBC connections;
-    162544417 nanoseconds spent releasing 3 JDBC connections;
-    144100583 nanoseconds spent preparing 4 JDBC statements;
-    257890583 nanoseconds spent executing 4 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    168707666 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
-    0 nanoseconds spent executing 0 pre-partial-flushes;
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-]]></system-err>
-  </testcase>
-  <testcase name="testTimezoneHandling" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="1.024">
-    <system-out><![CDATA[Hibernate: 
-    /* insert for
-        org.hibernate.community.dialect.test.Contact */insert 
-    into
-        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    select
-        id 
-    from
-        contact 
-    where
-        ROWID = (
-            select
-                max(ROWID) 
-            from
-                contact
-        )
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* delete for org.hibernate.community.dialect.test.Contact */delete 
-    from
-        contact 
-    where
-        id=?
-]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:35 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
-INFO: Session Metrics {
-    80643208 nanoseconds spent acquiring 3 JDBC connections;
-    93870000 nanoseconds spent releasing 3 JDBC connections;
-    173943416 nanoseconds spent preparing 4 JDBC statements;
-    189653582 nanoseconds spent executing 4 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    85520292 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
-    0 nanoseconds spent executing 0 pre-partial-flushes;
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-]]></system-err>
-  </testcase>
-  <testcase name="testUtcHandling" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="0.909">
-    <system-out><![CDATA[Hibernate: 
-    /* insert for
-        org.hibernate.community.dialect.test.Contact */insert 
-    into
-        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    select
-        id 
-    from
-        contact 
-    where
-        ROWID = (
-            select
-                max(ROWID) 
-            from
-                contact
-        )
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* delete for org.hibernate.community.dialect.test.Contact */delete 
-    from
-        contact 
-    where
-        id=?
-]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:36 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
-INFO: Session Metrics {
-    81751584 nanoseconds spent acquiring 3 JDBC connections;
-    80822167 nanoseconds spent releasing 3 JDBC connections;
-    209676959 nanoseconds spent preparing 4 JDBC statements;
-    217559126 nanoseconds spent executing 4 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    150162500 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
-    0 nanoseconds spent executing 0 pre-partial-flushes;
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-]]></system-err>
-  </testcase>
-  <testcase name="testAllTemporalTypesTogether" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="0.982">
-    <system-out><![CDATA[Hibernate: 
-    /* insert for
-        org.hibernate.community.dialect.test.Contact */insert 
-    into
-        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    select
-        id 
-    from
-        contact 
-    where
-        ROWID = (
-            select
-                max(ROWID) 
-            from
-                contact
-        )
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* delete for org.hibernate.community.dialect.test.Contact */delete 
-    from
-        contact 
-    where
-        id=?
-]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:37 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
-INFO: Session Metrics {
-    79799875 nanoseconds spent acquiring 3 JDBC connections;
-    82507834 nanoseconds spent releasing 3 JDBC connections;
-    145296583 nanoseconds spent preparing 4 JDBC statements;
-    178771792 nanoseconds spent executing 4 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    165600500 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
-    0 nanoseconds spent executing 0 pre-partial-flushes;
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-]]></system-err>
-  </testcase>
-  <testcase name="testNullTemporalValues" classname="org.hibernate.community.dialect.test.DateTimeOperationsTest" time="0.872">
-    <system-out><![CDATA[Hibernate: 
-    /* insert for
-        org.hibernate.community.dialect.test.Contact */insert 
-    into
-        contact (company, create_date, create_time, email, first_name, job_title, last_contact_date, last_name, login, notes, password, photo_content_type, photo_url, title, website) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    select
-        id 
-    from
-        contact 
-    where
-        ROWID = (
-            select
-                max(ROWID) 
-            from
-                contact
-        )
-Hibernate: 
-    select
-        c1_0.id,
-        c1_0.company,
-        c1_0.create_date,
-        c1_0.create_time,
-        c1_0.create_timestamp,
-        c1_0.email,
-        c1_0.first_name,
-        c1_0.job_title,
-        c1_0.last_contact_date,
-        c1_0.last_name,
-        c1_0.login,
-        c1_0.ROWMODID,
-        c1_0.notes,
-        c1_0.password,
-        c1_0.photo_content_type,
-        c1_0.photo_url,
-        c1_0.ROWID,
-        c1_0.sku,
-        c1_0.title,
-        c1_0.update_timestamp,
-        c1_0.uuid,
-        c1_0.website 
-    from
-        contact c1_0 
-    where
-        c1_0.id=?
-Hibernate: 
-    /* delete for org.hibernate.community.dialect.test.Contact */delete 
-    from
-        contact 
-    where
-        id=?
-]]></system-out>
-    <system-err><![CDATA[Nov 27, 2025 8:05:38 PM org.hibernate.engine.internal.StatisticalLoggingSessionEventListener end
-INFO: Session Metrics {
-    81966250 nanoseconds spent acquiring 3 JDBC connections;
-    153529917 nanoseconds spent releasing 3 JDBC connections;
-    148186792 nanoseconds spent preparing 4 JDBC statements;
-    170657376 nanoseconds spent executing 4 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    88046583 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
+    95141458 nanoseconds spent executing 2 flushes (flushing a total of 2 entities and 0 collections);
     0 nanoseconds spent executing 0 pre-partial-flushes;
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }

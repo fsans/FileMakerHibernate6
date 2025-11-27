@@ -11,7 +11,12 @@ SELECT GetAs(field_name, 'format') FROM table_name;
 ```
 
 - `field_name`: The name of the container field.
-- `'format'`: The desired file format (e.g., `'JPEG'`, `'FILE'`).
+- `'format'`: The 4-character type code (classic Mac OS style):
+  - `'GIFf'` - Graphics Interchange Format
+  - `'JPEG'` - Photographic images
+  - `'TIFF'` - Raster file format for digital images
+  - `'PDF '` - Portable Document Format (note trailing space)
+  - `'PNGf'` - Bitmap image format (PNG)
 
 #### Example
 

@@ -32,7 +32,8 @@ This implementation has been developed and tested with:
 5. [Connection Pooling: Why Not HikariCP](#connection-pooling-why-not-hikaricp)
 6. [ID Generation Strategy](#id-generation-strategy)
 7. [Pagination Implementation](#pagination-implementation)
-8. [Known Workarounds](#known-workarounds)
+8. [Container Fields (Binary Data)](#7-container-fields-require-special-syntax)
+9. [Known Workarounds](#known-workarounds)
 
 ---
 
@@ -127,6 +128,53 @@ FQL0052: The fetch count in FETCH clause is not valid.
 **Expected behavior** (per documentation): Should return an empty result set.
 
 **Status**: Driver bug. See [Documentation Discrepancies](#documentation-discrepancies).
+
+### 7. Container Fields Require Special Syntax
+
+FileMaker container fields (BLOB) cannot be accessed using standard JDBC blob methods. They require special SQL syntax with `GetAs()` for retrieval and `? AS 'filename'` for storage.
+
+**Impact**: Standard JPA `@Lob` mapping does NOT work with FileMaker containers.
+
+**Workaround**: Use native JDBC queries with the following syntax:
+
+```sql
+-- Upload: Use PreparedStatement.setBytes() with AS 'filename' syntax
+UPDATE table SET container_field = ? AS 'filename.ext' WHERE id = ?
+
+-- Download: Use GetAs() with 4-character type code
+SELECT GetAs(container_field, 'PNGf') FROM table WHERE id = ?
+
+-- Get file reference
+SELECT CAST(container_field AS VARCHAR) FROM table WHERE id = ?
+```
+
+**Supported Format Codes** (classic Mac OS style, case-sensitive):
+
+| Code | Format |
+|------|--------|
+| `GIFf` | Graphics Interchange Format |
+| `JPEG` | Photographic images |
+| `TIFF` | Raster file format for digital images |
+| `PDF ` | Portable Document Format (trailing space required!) |
+| `PNGf` | Bitmap image format (PNG) |
+
+> **Important**: The `FILE` format returns NULL for typed content. Always use the specific type code matching the stored data format.
+
+**Content Type Detection Strategy:**
+
+When the format is unknown, the API uses a fallback strategy (fast → slow):
+
+1. **Check stored content type** - Read from a separate field (e.g., `photo_content_type`)
+2. **Check file reference** - Parse filename from `CAST(container AS VARCHAR)`
+3. **Probe formats** - Try each format code until data is returned
+
+**Recommended:** Configure FileMaker auto-enter calculation on the content type field:
+
+```
+GetContainerAttribute ( container_field ; "MIMEType" )
+```
+
+This returns MIME types like `image/png`, `application/pdf`, etc., enabling fast detection without extra queries.
 
 ---
 
