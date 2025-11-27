@@ -1,147 +1,134 @@
-# Geronimo - Minimal Viable FileMaker Hibernate Dialect
+# Geronimo - FileMaker Hibernate Dialect
 
-> "Geronimo!" - The jump into minimal, functional FileMaker + Hibernate integration
+> "Geronimo!" - The jump into functional FileMaker + Hibernate integration
 
-## Goal
+## Current Status: ✅ STABLE
 
-A minimal, functional Hibernate 6.5+ dialect for Spring Boot + FileMaker + HikariCP that:
+The FileMaker Hibernate Dialect is now functional and tested with:
 
-- ✅ Passes basic CRUD tests
-- ✅ Uses available key generation strategy (`max(id)` workaround)
-- ✅ Implements OFFSET/FETCH pagination
-- ✅ Maps only FileMaker-supported types
-
----
-
-## Key Constraints (from FileMaker JDBC Driver)
-
-| Constraint | Impact |
-|------------|--------|
-| **No auto-generated keys** | Must use `select max(id)` or rely on FileMaker auto-enter serial |
-| **No timezone support** | Use `LocalDateTime` without timezone |
-| **No subquery pagination** | OFFSET/FETCH only at top-level SELECT |
-| **No DDL** | `hbm2ddl.auto=none` always |
-| **JDBC 3 minimal** | No scrollable cursors, no savepoints |
+- **FileMaker Server 2025 (22.0.3)**
+- **JDBC Driver fmjdbc 21.0.2**
+- **Hibernate ORM 6.5.x / 6.6.x**
+- **Java 17+**
 
 ---
 
-## Phase 1: Core Dialect Cleanup
+## Completed Features
 
-### 1.1 Simplify `FileMakerDialect.java`
+### Core Dialect ✅
 
-- [x] Remove unused/commented code
-- [x] Keep only essential type mappings: `NUMERIC`, `VARCHAR`, `DATE`, `TIME`, `TIMESTAMP`, `BLOB`
-- [x] Confirm `FileMakerLimitHandler2` is the only pagination handler
-- [x] Remove `FileMakerLimitHandler` (legacy)
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Type Mappings | ✅ Complete | VARCHAR, DOUBLE, DATE, TIME, TIMESTAMP, BLOB |
+| Pagination | ✅ Complete | ANSI SQL `OFFSET/FETCH FIRST` via `FileMakerSqlAstTranslator` |
+| Identity Support | ✅ Complete | ROWID-based strategy |
+| Reserved Keywords | ✅ Complete | ~100+ FileMaker-specific keywords |
+| DDL Disabled | ✅ Complete | Schema managed in FileMaker Pro |
 
-### 1.2 Fix Identity Strategy
+### Testing ✅
 
-- [ ] Document that `@GeneratedValue(strategy = GenerationType.IDENTITY)` uses `select max(id)`
-- [ ] Alternative: Use `@GeneratedValue(strategy = GenerationType.AUTO)` with a custom ID generator or let FileMaker handle it via auto-enter serial
+| Test Suite | Tests | Status |
+|------------|-------|--------|
+| IntegrationTest | CRUD operations | ✅ Passing |
+| PaginationTest | OFFSET/FETCH | ✅ Passing (2 skipped - driver bugs) |
+| DateTimeOperationsTest | LocalDate, LocalTime, LocalDateTime, Timezones | ✅ Passing (9 tests) |
+| TypeMappingTest | All supported types | ✅ Passing |
+| IdentitySupportTest | ID generation | ✅ Passing |
+| LargeTextFieldsTest | Large VARCHAR | ✅ Passing |
+| ReservedWordsTest | Keyword escaping | ✅ Passing |
+| GenerateRandomDataTest | Bulk insert | ✅ Passing |
 
-### 1.3 Type Mapping Verification
+Total: 60 tests, 0 failures, 2 skipped
 
-Map only what FileMaker JDBC actually supports:
+### Documentation ✅
 
-| Java Type | FileMaker SQL Type | JDBC Code |
-|-----------|-------------------|-----------|
-| `Long/Integer` | NUMERIC | 2 |
-| `Double/BigDecimal` | DECIMAL | 3 |
-| `String` | VARCHAR | 12 |
-| `byte[]` | BLOB | -2 |
-| `LocalDate` | DATE | 91 |
-| `LocalTime` | TIME | 92 |
-| `LocalDateTime` | TIMESTAMP | 93 |
+| Document | Status |
+|----------|--------|
+| README.md | ✅ Complete - Installation, configuration, examples |
+| IMPLEMENTATION.md | ✅ Complete - Limitations, driver bugs, workarounds |
+| DriverInfo.md | ✅ Complete - JDBC driver reference |
+| FileMakerSQL-pagination.md | ✅ Complete - Pagination syntax |
 
----
+### Developer Tools ✅
 
-## Phase 2: Spring Boot + HikariCP Integration
-
-### 2.1 Create Sample `application.yml`
-
-- [ ] Create reference configuration for Spring Boot + HikariCP
-- [ ] Document all required properties
-
-### 2.2 Test HikariCP Connection
-
-- [ ] Create integration test that verifies pool initialization
-- [ ] Verify connection acquisition/release cycle
-
----
-
-## Phase 3: Minimal Test Suite
-
-### 3.1 Essential CRUD Tests
-
-| Test | Status | Priority |
-|------|--------|----------|
-| `testCreate` | ✅ Passing | P0 |
-| `testRead` | ✅ Passing | P0 |
-| `testUpdate` | ✅ Passing | P0 |
-| `testDelete` | ✅ Passing | P0 |
-
-### 3.2 Fix Skipped Tests
-
-- [ ] `testRowIdPersistence` - Fix field validation
-- [ ] `testDateTimeOperations` - Remove timezone expectations, use `LocalDateTime`
-
-### 3.3 Pagination Test
-
-- [ ] Verify `OFFSET x ROWS FETCH FIRST y ROWS ONLY` generates correctly
-- [ ] Test with Spring Data `Pageable`
+| Tool | Status |
+|------|--------|
+| `FileMakerBaseEntity` | ✅ Abstract base class for entities |
+| `maven_deploy_driver.sh` | ✅ JDBC driver installation script |
+| `maven_deploy_dialect.sh` | ✅ Dialect installation script |
+| Allure Test Reports | ✅ Configured (optional) |
 
 ---
 
-## Phase 4: Documentation & Packaging
+## Known Limitations (Documented)
 
-### 4.1 Update README
-
-- [ ] HikariCP configuration example
-- [ ] Spring Boot setup guide
-- [ ] Known limitations section
-
-### 4.2 Clean Up Project
-
-- [ ] Remove `FileMakerLimitHandler.java` (keep only `FileMakerLimitHandler2`)
-- [ ] Remove `FileMakerStatementInspector` or make it optional debug tool
-- [ ] Update `status.md` with final state
+| Limitation | Workaround |
+|------------|------------|
+| No HikariCP | Use Apache DBCP2 |
+| No `Connection.isValid()` | Use `validationQuery` |
+| No `SELECT 1` | Use `SELECT * FROM FileMaker_Tables` |
+| No `getGeneratedKeys()` | Use ROWID-based identity retrieval |
+| No scrollable ResultSets | Forward-only cursors |
+| No DDL generation | Manage schema in FileMaker Pro |
 
 ---
 
-## Progress Log
+## Future Enhancements (Backlog)
 
-### 2025-11-27
+### Priority 1 - Near Term
 
-- [x] Created `geronimo` branch
-- [x] Created this plan document
-- [x] **Phase 1.1 Complete:**
-  - Removed legacy `FileMakerLimitHandler.java`
-  - Cleaned up `FileMakerDialect.java` (improved docs, removed commented code)
-  - Improved `FileMakerIdentityColumnSupport.java` (better docs, fixed column name in getIdentitySelectString)
-  - Updated JDBC driver version to 21.0.2 in pom.xml
-  - Build compiles successfully
-- [x] **Tests verified:** 60 tests run, 57 passed, 2 skipped, 1 edge case failure (non-critical)
-- [x] **Phase 2: Spring Boot + DBCP2 Integration**
-  - Created `filemaker-demo-api` project with REST API
-  - Apache DBCP2 connection pool working (HikariCP incompatible due to `isValid()`)
-  - CRUD operations working via Swagger UI
-- [ ] **Pagination Issue (In Progress):**
-  - Dialect's `FileMakerLimitHandler2` works in unit tests
-  - Spring Data JPA `Pageable` not triggering `LimitHandler` in Hibernate 6
-  - Created `FileMakerSqlAstTranslator` but SQL AST path doesn't invoke it for criteria queries
-  - **Workaround needed:** Manual pagination in controller or native queries
+- [ ] Binary/BLOB handling with `GetAs()`/`PutAs()`
+- [ ] Container field support
+
+### Priority 2 - Medium Term
+
+- [ ] Test with new JDBC driver from FMS 2025 (driver 22+)
+- [ ] Advanced queries (JOINs with limitations) Must be with driver 22+
+- [ ] FileMaker ODATA/Data API alternative connector
+
+### Priority 3 - Long Term
+
+- [ ] Maven Central publishing
+- [ ] Spring Boot Starter auto-configuration
+- [ ] Connection failover support (LOW)
+- [ ] Connection pool health metrics (LOW)
 
 ---
 
-## Out of Scope (Deferred)
+## Project Structure
 
-- Spring Boot Starter auto-configuration
-- Maven Central publishing
-- Binary/BLOB handling with `GetAs()`/`PutAs()`
-- Advanced queries (JOINs, subqueries)
-- Connection failover
+```text
+FileMakerHibernate6/
+├── src/main/java/org/hibernate/community/dialect/
+│   ├── FileMakerDialect.java           # Main dialect
+│   ├── FileMakerSqlAstTranslator.java  # Pagination SQL generation
+│   ├── entity/
+│   │   └── FileMakerBaseEntity.java    # Base entity class
+│   ├── identity/
+│   │   └── FileMakerIdentityColumnSupport.java
+│   └── pagination/
+│       └── FileMakerLimitHandler2.java
+├── src/test/java/                       # Test suite (60 tests)
+├── docs/
+│   ├── IMPLEMENTATION.md               # Technical documentation
+│   ├── DriverInfo.md                   # JDBC driver reference
+│   └── FileMakerSQL-pagination.md      # Pagination syntax
+├── README.md                           # User guide
+├── maven_deploy_driver.sh              # Driver installation
+└── maven_deploy_dialect.sh             # Dialect installation
+```
 
 ---
 
-*Branch: geronimo*
+## Companion Project
+
+**filemaker-demo-api** - Spring Boot REST API demonstrating the dialect:
+
+- CRUD endpoints for Contact entity
+- Swagger UI for testing
+- Apache DBCP2 connection pool configuration
+
+---
+
+*Branch: geronimo (merged to main)*  
 *Last updated: 2025-11-27*

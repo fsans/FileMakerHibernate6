@@ -19,7 +19,7 @@ This project provides a custom Hibernate dialect for FileMaker Server, enabling 
 
 - ANSI SQL pagination with `OFFSET` / `FETCH FIRST` clauses
 - FileMaker-specific type mappings (VARCHAR, DOUBLE, TIMESTAMP, BLOB)
-- Custom identity support using `SELECT MAX(id)` strategy
+- Custom identity support using ROWID-based strategy
 - Extensive reserved keyword handling (~100+ FileMaker-specific keywords)
 - Compatible with FileMaker Server 19, 20, 21, 2023, 2024, 2025
 

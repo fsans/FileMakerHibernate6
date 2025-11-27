@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.hibernate.community.dialect.test.IdentitySupportTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in org.hibernate.community.dialect.test.IdentitySupportTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in org.hibernate.community.dialect.test.IdentitySupportTest

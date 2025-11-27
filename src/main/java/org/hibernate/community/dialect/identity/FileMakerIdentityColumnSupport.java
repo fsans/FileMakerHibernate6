@@ -5,17 +5,27 @@ import org.hibernate.dialect.identity.IdentityColumnSupportImpl;
 /**
  * Identity column support for FileMaker databases.
  * <p>
- * FileMaker JDBC driver does NOT support auto-generated keys retrieval.
- * This implementation uses a workaround: after INSERT, it queries {@code select max(id) from table}
- * to retrieve the generated ID.
+ * FileMaker JDBC driver does NOT support auto-generated keys retrieval via
+ * {@code Statement.getGeneratedKeys()}. This implementation uses a workaround
+ * based on FileMaker's ROWID system column.
  * <p>
- * <b>Important:</b> This approach has a race condition risk in high-concurrency scenarios.
- * For production use, consider:
+ * <b>Strategy:</b> After INSERT, query the record with the highest ROWID to get
+ * the user-defined ID column value:
+ * <pre>
+ * SELECT id FROM table WHERE ROWID = (SELECT MAX(ROWID) FROM table)
+ * </pre>
+ * <p>
+ * <b>Why ROWID instead of MAX(id)?</b>
  * <ul>
- *   <li>Using FileMaker's auto-enter serial field and accepting the max(id) limitation</li>
- *   <li>Using application-generated UUIDs instead of database-generated IDs</li>
- *   <li>Using FileMaker's ROWID system column as an alternative identifier</li>
+ *   <li>ROWID is system-managed and cannot be altered by users</li>
+ *   <li>ROWID always increases and never resets (even after record deletion)</li>
+ *   <li>ROWID is guaranteed unique within the table</li>
+ *   <li>User-defined serial fields (id) can be manually changed or reset</li>
  * </ul>
+ * <p>
+ * <b>Concurrency Note:</b> There is still a theoretical race condition in high-concurrency
+ * scenarios where multiple inserts happen simultaneously. For mission-critical applications,
+ * consider using application-generated UUIDs instead.
  *
  * @author Francesc Sans
  */
@@ -40,8 +50,17 @@ public class FileMakerIdentityColumnSupport extends IdentityColumnSupportImpl {
 
     /**
      * Returns SQL to retrieve the last inserted ID.
-     * Uses {@code select max(column) from table} as a workaround since
-     * FileMaker JDBC does not support getGeneratedKeys().
+     * <p>
+     * Uses FileMaker's ROWID system column to reliably identify the last inserted record,
+     * then retrieves the user-defined ID column value. This is safer than {@code MAX(id)}
+     * because ROWID:
+     * <ul>
+     *   <li>Is system-managed and cannot be altered by users</li>
+     *   <li>Always increases and never resets</li>
+     *   <li>Is guaranteed unique within the table</li>
+     * </ul>
+     * <p>
+     * The query pattern is: {@code SELECT column FROM table WHERE ROWID = (SELECT MAX(ROWID) FROM table)}
      *
      * @param table  the table name
      * @param column the identity column name
@@ -50,7 +69,8 @@ public class FileMakerIdentityColumnSupport extends IdentityColumnSupportImpl {
      */
     @Override
     public String getIdentitySelectString(String table, String column, int type) {
-        return "select max(" + column + ") from " + table;
+        // Use ROWID to reliably find the last inserted record, then get its id column value
+        return "select " + column + " from " + table + " where ROWID = (select max(ROWID) from " + table + ")";
     }
 
     @Override

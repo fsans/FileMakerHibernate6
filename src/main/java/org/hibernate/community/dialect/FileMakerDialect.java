@@ -22,7 +22,7 @@ import java.sql.Types;
  * <ul>
  *   <li>OFFSET/FETCH pagination (ANSI SQL standard)</li>
  *   <li>Type mappings for NUMERIC, VARCHAR, DATE, TIME, TIMESTAMP, BLOB</li>
- *   <li>Identity column support via max(id) workaround</li>
+ *   <li>Identity column support via ROWID-based retrieval</li>
  * </ul>
  * <p>
  * Limitations (FileMaker JDBC driver constraints):

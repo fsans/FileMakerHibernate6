@@ -15,8 +15,8 @@ import java.io.Serializable;
  *       marked as {@code insertable = false, updatable = false} to prevent Hibernate
  *       from trying to set it.</li>
  *   <li><b>Identity Strategy:</b> Use {@code GenerationType.AUTO} - the dialect uses
- *       {@code SELECT MAX(id)} as a workaround since FileMaker doesn't support
- *       {@code getGeneratedKeys()}.</li>
+ *       a ROWID-based query to retrieve the last inserted ID since FileMaker doesn't
+ *       support {@code getGeneratedKeys()}.</li>
  *   <li><b>Numeric Types:</b> FileMaker stores all numbers as DOUBLE internally.
  *       Consider using {@code Double} for numeric fields to avoid precision issues.</li>
  *   <li><b>Date/Time:</b> FileMaker uses a unified TIMESTAMP type. Use
