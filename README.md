@@ -11,7 +11,7 @@ This project provides a custom Hibernate dialect for FileMaker Server, enabling 
 | Component | Version |
 |-----------|---------|
 | FileMaker Server | 2025 (22.0.3) |
-| FileMaker JDBC Driver | fmjdbc 21.0.2 |
+| FileMaker JDBC Driver | fmjdbc 22.0.1 |
 | Hibernate ORM | 6.5.x / 6.6.x |
 | Java | 17+ |
 
@@ -43,10 +43,10 @@ The FileMaker JDBC driver is not publicly distributed. Obtain it from your FileM
 
 ```bash
 # Place the driver JAR in src/main/resources/
-cp /path/to/fmjdbc.jar ./src/main/resources/fmjdbc.21.0.2.jar
+cp /path/to/fmjdbc.jar ./src/main/resources/fmjdbc_22.0.1.jar
 
 # Install to local Maven repository
-./maven_deploy_driver.sh 21.0.2
+./maven_deploy_driver.sh 22.0.1
 ```
 
 ### 2. Build and Install the Dialect

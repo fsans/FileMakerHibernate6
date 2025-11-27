@@ -7,7 +7,7 @@
 The FileMaker Hibernate Dialect is now functional and tested with:
 
 - **FileMaker Server 2025 (22.0.3)**
-- **JDBC Driver fmjdbc 21.0.2**
+- **JDBC Driver fmjdbc 22.0.1**
 - **Hibernate ORM 6.5.x / 6.6.x**
 - **Java 17+**
 
@@ -38,7 +38,7 @@ The FileMaker Hibernate Dialect is now functional and tested with:
 | ReservedWordsTest | Keyword escaping | ✅ Passing |
 | GenerateRandomDataTest | Bulk insert | ✅ Passing |
 
-Total: 60 tests, 0 failures, 2 skipped
+Total: 74 tests, 0 failures, 2 skipped
 
 ### Documentation ✅
 
@@ -82,8 +82,8 @@ Total: 60 tests, 0 failures, 2 skipped
 
 ### Priority 2 - Medium Term
 
-- [ ] Test with new JDBC driver from FMS 2025 (driver 22+)
-- [ ] Advanced queries (JOINs with limitations) Must be with driver 22+
+- [x] Test with new JDBC driver from FMS 2025 (driver 22+) ✅ Tested with 22.0.1
+- [ ] Advanced queries (JOINs with limitations)
 - [ ] FileMaker ODATA/Data API alternative connector
 
 ### Priority 3 - Long Term
@@ -108,7 +108,7 @@ FileMakerHibernate6/
 │   │   └── FileMakerIdentityColumnSupport.java
 │   └── pagination/
 │       └── FileMakerLimitHandler2.java
-├── src/test/java/                       # Test suite (60 tests)
+├── src/test/java/                       # Test suite (74 tests)
 ├── docs/
 │   ├── IMPLEMENTATION.md               # Technical documentation
 │   ├── DriverInfo.md                   # JDBC driver reference

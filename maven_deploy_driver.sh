@@ -16,7 +16,7 @@ fi
 VERSION=$1
 
 mvn install:install-file \
--Dfile=./src/main/resources/fmjdbc.${VERSION}.jar \
+-Dfile=./src/main/resources/fmjdbc_${VERSION}.jar \
 -DgroupId=com.filemaker.jdbc.Driver \
 -DartifactId=fmjdbc \
 -Dversion=${VERSION} \

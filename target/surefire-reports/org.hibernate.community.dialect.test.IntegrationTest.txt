@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.hibernate.community.dialect.test.IntegrationTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.28 s -- in org.hibernate.community.dialect.test.IntegrationTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.55 s -- in org.hibernate.community.dialect.test.IntegrationTest
