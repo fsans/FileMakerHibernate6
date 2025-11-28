@@ -253,6 +253,19 @@ This ensures optimal performance by avoiding extra queries or probing.
 
 ---
 
+## Demo Project
+
+A complete working example using this dialect is available at:
+
+**[filemaker-demo-api](https://github.com/fsans/filemaker-demo-api)** - Spring Boot REST API demonstrating FileMaker Hibernate integration with:
+
+- Contact entity with CRUD operations
+- Container field (photo) upload/download
+- Pagination and filtering examples
+- Complete configuration reference
+
+---
+
 ## Documentation
 
 - [IMPLEMENTATION.md](docs/IMPLEMENTATION.md) - Detailed implementation notes, limitations, and workarounds
