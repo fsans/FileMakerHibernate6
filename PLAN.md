@@ -79,6 +79,7 @@ Total: 74 tests, 0 failures, 2 skipped
 
 - [x] Binary/BLOB handling with `GetAs()`/`PutAs()` ✅ Complete
 - [x] Container field support ✅ Complete
+- [ ] Documentation and implementation of new SQL features in FileMaker 2025
 
 ### Priority 2 - Medium Term
 

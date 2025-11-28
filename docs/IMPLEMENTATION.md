@@ -418,12 +418,12 @@ Use `java.time` classes (LocalDate, LocalDateTime) for best compatibility.
 | Component | Tested Version |
 |-----------|---------------|
 | Hibernate ORM | 6.5.x, 6.6.x |
-| FileMaker JDBC Driver | 19.x, 20.x, 21.x, 22.x |
+| FileMaker JDBC Driver | 19.x, 20.x, 21.x, 22.0 |
 | FileMaker Server | 19, 20, 21, 2023, 2024, 2025 |
 | Java | 17+ |
 | Apache DBCP2 | 2.9.x, 2.11.x |
 
-> **Last tested**: November 27, 2025 with FileMaker Server 2025 (22.0.3) and JDBC driver 22.0.1
+> **Last tested**: November 27, 2025 with FileMaker Server 2025 (22.0.1) and JDBC driver 22.0
 
 ---
 
@@ -432,7 +432,7 @@ Use `java.time` classes (LocalDate, LocalDateTime) for best compatibility.
 When reporting issues with this dialect:
 
 1. Include FileMaker Server version
-2. Include JDBC driver version (from JAR manifest)
+2. Include JDBC driver version 
 3. Include Hibernate version
 4. Provide the exact SQL being generated (enable `hibernate.show_sql=true`)
 5. Include the full stack trace

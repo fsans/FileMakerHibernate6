@@ -4,7 +4,7 @@ Hibernate 6.5+ dialect for FileMaker databases.
 
 ## Overview
 
-This project provides a custom Hibernate dialect for FileMaker Server, enabling Java applications to use Hibernate ORM with FileMaker databases via the FileMaker JDBC driver.
+This project provides a custom Hibernate dialect for Claris FileMaker JDBC, enabling Java applications to use Hibernate ORM seamlessly via the FileMaker JDBC driver. This replaces previous implementations for Hibernate 5 but solves compatibility issues with Hibernate 6 and provides improved functionality.
 
 ## Tested Environment
 
@@ -18,8 +18,8 @@ This project provides a custom Hibernate dialect for FileMaker Server, enabling 
 ## Features
 
 - ANSI SQL pagination with `OFFSET` / `FETCH FIRST` clauses
-- FileMaker-specific type mappings (VARCHAR, DOUBLE, TIMESTAMP, BLOB)
-- Custom identity support using ROWID-based strategy
+- FileMaker-specific type mappings (VARCHAR, DOUBLE, DATE, TIME, TIMESTAMP, BLOB)
+- Custom identity support using ROWID-based strategy combined with custom id/uuid generation for better compatibility
 - Container field (binary data) support via native JDBC
 - Extensive reserved keyword handling (~100+ FileMaker-specific keywords)
 - Compatible with FileMaker Server 19, 20, 21, 2023, 2024, 2025
