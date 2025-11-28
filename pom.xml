@@ -6,7 +6,7 @@
 
     <groupId>com.filemaker.hibernate.dialect</groupId>
     <artifactId>FileMakerDialect</artifactId>
-    <version>21.0.2</version>
+    <version>22.0.1</version>
     
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

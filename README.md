@@ -62,7 +62,7 @@ cp /path/to/fmjdbc.jar ./src/main/resources/fmjdbc_22.0.1.jar
 mvn package
 
 # Install to local Maven repository
-./maven_deploy_dialect.sh 21.0.2
+./maven_deploy_dialect.sh 22.0.1
 ```
 
 ### 3. Add Dependencies to Your Project
@@ -72,14 +72,14 @@ mvn package
 <dependency>
     <groupId>com.filemaker.hibernate.dialect</groupId>
     <artifactId>FileMakerDialect</artifactId>
-    <version>21.0.2</version>
+    <version>22.0.1</version>
 </dependency>
 
 <!-- FileMaker JDBC Driver -->
 <dependency>
     <groupId>com.filemaker.jdbc.Driver</groupId>
     <artifactId>fmjdbc</artifactId>
-    <version>21.0.2</version>
+    <version>22.0.1</version>
 </dependency>
 
 <!-- Apache DBCP2 (required - HikariCP does not work) -->

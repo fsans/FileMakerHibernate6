@@ -16,7 +16,7 @@ import java.sql.Types;
 /**
  * Hibernate dialect for FileMaker databases via JDBC.
  * <p>
- * Supports FileMaker Server 20+ with the FileMaker JDBC driver.
+ * Supports FileMaker Server 22+ with the FileMaker JDBC driver.
  * <p>
  * Key features:
  * <ul>
@@ -39,7 +39,7 @@ import java.sql.Types;
  */
 public class FileMakerDialect extends Dialect {
 
-    private static final DatabaseVersion DEFAULT_VERSION = DatabaseVersion.make( 21, 0 );
+    private static final DatabaseVersion DEFAULT_VERSION = DatabaseVersion.make( 22, 0 );
 
     public FileMakerDialect() {
         this( DEFAULT_VERSION );
