@@ -2,6 +2,7 @@
 
 [![GitHub tag](https://img.shields.io/github/v/tag/fsans/FileMakerHibernate6)](https://github.com/fsans/FileMakerHibernate6/tags)
 [![Hibernate](https://img.shields.io/badge/Hibernate-6.5+-green)](https://hibernate.org/)
+[![fmjdbc](https://img.shields.io/badge/fmjdbc-22.1-purple)](https://help.claris.com/en/jdbc-odbc-guide/)
 [![Java](https://img.shields.io/badge/Java-17+-orange)](https://openjdk.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
