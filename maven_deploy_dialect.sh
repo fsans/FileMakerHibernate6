@@ -17,7 +17,7 @@ VERSION=$1
 mvn install:install-file \
 -Dfile=./target/FileMakerDialect-${VERSION}.jar \
 -DgroupId=com.filemaker.hibernate.dialect \
--DartifactId=filemakerdialect \
+-DartifactId=FileMakerDialect \
 -Dversion=${VERSION} \
 -Dpackaging=jar \
 -DgeneratePom=true
