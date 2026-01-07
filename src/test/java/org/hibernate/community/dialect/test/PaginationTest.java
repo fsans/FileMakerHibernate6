@@ -186,9 +186,9 @@ public class PaginationTest {
     void testOrderedPagination() {
         transaction = session.beginTransaction();
         try {
-            // Get first 5 records ordered by email descending
+            // Get first 5 records ordered by email descending (only test data)
             Query<String> query = session.createQuery(
-                "SELECT c.email FROM Contact c ORDER BY c.email DESC FETCH FIRST 5 ROWS ONLY", 
+                "SELECT c.email FROM Contact c WHERE c.email LIKE 'user%@test.com' ORDER BY c.email DESC FETCH FIRST 5 ROWS ONLY", 
                 String.class);
             
             List<String> emails = query.getResultList();
