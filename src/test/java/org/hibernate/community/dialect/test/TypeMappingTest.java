@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Types;
 import org.hibernate.community.dialect.FileMakerDialect;
-import org.hibernate.community.dialect.identity.FileMakerIdentityColumnSupport;
-import org.hibernate.community.dialect.pagination.FileMakerLimitHandler2;
 import org.hibernate.dialect.DatabaseVersion;
 import org.hibernate.type.descriptor.jdbc.spi.JdbcTypeRegistry;
 import org.hibernate.type.spi.TypeConfiguration;

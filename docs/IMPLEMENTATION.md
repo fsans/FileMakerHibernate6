@@ -10,9 +10,9 @@ This implementation has been developed and tested with:
 
 | Component | Version |
 |-----------|---------|
-| **FileMaker Server** | 2025 (22.0.3) |
+| **FileMaker Server** | 2025 (22.0.1,NOV 2025) |
 | **FileMaker JDBC Driver** | fmjdbc 22.0.1 |
-| **Hibernate ORM** | 6.5.x / 6.6.x |
+| **Hibernate ORM** | 6.5+ |
 | **Java** | 17+ |
 
 ---
